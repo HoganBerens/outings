@@ -1,8 +1,10 @@
 # Outings and Occurrences
 Developed by Hogan Berens, Christopher Kildunne, and Erika-Joelle Roncal 
+August 18, 2023
 
 # Description
 Introducing Outings and Occurrences: Uniting Passion and Camaraderie in the World of Sporting Celebrations!
+
 Picture a world where the roar of the crowd and the thrill of the game come together in perfect harmony. Outings and Occurrences is not just an app – it's a celebration waiting to happen. Born out of a passion for sports and a deep desire to foster genuine connections, this dynamic platform is set to redefine how we experience sporting events.
 
 
@@ -32,7 +34,5 @@ Picture a world where the roar of the crowd and the thrill of the game come toge
 
 - Permit users to monetize events that they host
 - Give users the option to bookmark events
-- Implement a Calendar API where users can mark upcoming events
-- Grant access to metrics regarding events across the app
 - Detail a friends function where users can follow and interact with other users
-- Optimize app design for mobile use
+- Optimize app design for mobile users
