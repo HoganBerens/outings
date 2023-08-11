@@ -1,0 +1,16 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>Event List</h1>
+{% if events %} {% for event in events %}
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">{{ event.name }}</span>
+      <p>Location: {{ event.location }}</p>
+      <p>Sport: {{ event.sport }}</p>
+      <p>Description: {{ event.description }}</p>
+    </div>
+  </div>
+</a>
+{% endfor %} {% else %}
+<h5>You haven't created any events yet</h5>
+{% endif %} {% endblock %}

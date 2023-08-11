@@ -1,11 +1,31 @@
 from django.shortcuts import render, redirect
+from .models import Event
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 # Create your views here.
 def home(request):
     return render(request, "home.html")
+
+
+@login_required
+def events_index(request):
+    events = Event.objects.filter(user=request.user)
+    return render(request, "events/index.html", {"events": events})
+
+
+class EventCreate(LoginRequiredMixin, CreateView):
+    model = Event
+    fields = ["name", "location", "sport", "description"]
+    success_url = "/events"
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 
 def signup(request):
