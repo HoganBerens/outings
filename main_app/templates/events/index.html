@@ -1,7 +1,9 @@
 {% extends 'base.html' %} {% block content %}
 
 <h1>Event List</h1>
-{% if events %} {% for event in events %}
+{% if events %} 
+{% for event in events %}
+<a href ="{% url 'detail' event.id %}">
   <div class="card">
     <div class="card-content">
       <span class="card-title">{{ event.name }}</span>

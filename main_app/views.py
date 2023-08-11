@@ -27,6 +27,15 @@ class EventCreate(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
+class EventUpdate(LoginRequiredMixin, UpdateView):
+    model = Event
+    fields = ["location", "sport", "description"]
+    
+class EventDelete(LoginRequiredMixin, DeleteView):
+    model = Event
+    success_url = '/events'
+
+
 
 def signup(request):
     error_message = ""
