@@ -11,6 +11,7 @@
     </div>
        <a href = "{url 'event_update' event.id }">Edit</a>
        <a href = "{url 'event_delete' event.id }">Delete</a>
+       
 </div>
 <form action="{% url 'add_comment' event.id %}" method = "POST">
     {% csrf_token %}
