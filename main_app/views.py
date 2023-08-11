@@ -17,6 +17,12 @@ def events_index(request):
     events = Event.objects.filter(user=request.user)
     return render(request, "events/index.html", {"events": events})
 
+def events_detail(request, event_id):
+    event = Event.objects.get(id=event_id)
+    return render(request, 'events/detail.html', {
+        'event' : event
+    })
+
 
 class EventCreate(LoginRequiredMixin, CreateView):
     model = Event
