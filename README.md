@@ -21,6 +21,7 @@ Picture a world where the roar of the crowd and the thrill of the game come toge
 - Django
 - Python
 - Postgresql
+- Bootstrap
 - GitHub
 - Heroku
 
