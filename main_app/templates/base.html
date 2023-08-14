@@ -13,6 +13,7 @@
     <header>
       {% if user.is_authenticated %}
       <li><a href="{% url 'logout' %}">Log Out</a></li>
+      <li><a href="{% url 'home' %}">Home</a></li>
       <li><a href="{% url 'index' %}">View All Your Events</a></li>
       <li><a href="{% url 'events_create' %}">Add an Event</a></li>
       {% else %}

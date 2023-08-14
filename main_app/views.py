@@ -9,24 +9,40 @@ from .forms import CommentForm
 
 
 # Create your views here.
+def dashboard(request):
+    return render(request, "dashboard.html")
+
+
+@login_required
 def home(request):
-    return render(request, "home.html")
+    events = Event.objects.all()
+    return render(request, "home.html", {"events": events})
 
 
 @login_required
 def events_index(request):
     events = Event.objects.filter(user=request.user)
-   
+
     return render(request, "events/index.html", {"events": events})
+
+
+def filter_sport(request):
+    events = Event.objects.filter(sport=request)
+    return render(request, "home.html", {"events": events})
+
 
 @login_required
 def events_detail(request, event_id):
     event = Event.objects.get(id=event_id)
     comment_form = CommentForm()
-    return render(request, 'events/detail.html', {
-        'event' : event,
-        'comment_form': comment_form,
-    })
+    return render(
+        request,
+        "events/detail.html",
+        {
+            "event": event,
+            "comment_form": comment_form,
+        },
+    )
 
 
 class EventCreate(LoginRequiredMixin, CreateView):
@@ -38,24 +54,25 @@ class EventCreate(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
+
 class EventUpdate(LoginRequiredMixin, UpdateView):
     model = Event
     fields = ["location", "sport", "description"]
-    
+
+
 class EventDelete(LoginRequiredMixin, DeleteView):
     model = Event
-    success_url = '/events'
-
+    success_url = "/events"
 
 
 @login_required
 def add_comment(request, event_id):
-  form = CommentForm(request.POST)
-  if form.is_valid():
-    new_comment= form.save(commit=False)
-    new_comment.event_id = event_id
-    new_comment.save()
-  return redirect('detail', event_id=event_id)
+    form = CommentForm(request.POST)
+    if form.is_valid():
+        new_comment = form.save(commit=False)
+        new_comment.event_id = event_id
+        new_comment.save()
+    return redirect("detail", event_id=event_id)
 
 
 def signup(request):
@@ -69,7 +86,7 @@ def signup(request):
             user = form.save()
             # This is how we log a user in via code
             login(request, user)
-            return redirect("/")
+            return redirect("/home/")
         else:
             error_message = "Invalid sign up - try again"
     # A bad POST or a GET request, so render signup.html with an empty form

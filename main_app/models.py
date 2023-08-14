@@ -16,15 +16,14 @@ class Event(models.Model):
 
     def __str__(self):
         return self.name
-    
+
     def get_absolute_url(self):
-        return reverse('detail', kwargs={'event_id': self.id})
-    
+        return reverse("detail", kwargs={"event_id": self.id})
+
+
 class Comment(models.Model):
     comment = models.TextField(max_length=200)
     attending = models.CharField(
-        max_length=1, 
-        choices=ATTENDING, 
-        default=ATTENDING[0][0]
+        max_length=1, choices=ATTENDING, default=ATTENDING[0][0]
     )
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
