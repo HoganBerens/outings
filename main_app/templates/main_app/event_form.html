@@ -1,4 +1,6 @@
-{% extends "base.html" %} {% block content %} {% if object %}
+{% extends "base.html" %}
+{% block content %}
+{% if object %}
 <h1>Edit <span>{{object.name}}</span></h1>
 {% else %}
 <h1>Add Event</h1>
@@ -7,9 +9,19 @@
 <form action="" method="POST">
   {% csrf_token %}
   <table>
-    {{ form.as_table }}
+    <tr>
+      <td>
+        <p>Event Name: {{ form.name }}</p>
+        <p>Date: {{ form.date }}</p>
+        <p>Sport: {{ form.sport }}</p>
+        <p>Description: {{ form.description }}</p>
+        <p><label for="{{ form.location.id_for_label }}">Location:</label> {{ form.location }}</p>
+        <p>{{form.location.errors}}</p>
+      </td>
+    </tr>
   </table>
   <input type="submit" value="Submit" class="btn" />
 </form>
+
 
 {% endblock %}

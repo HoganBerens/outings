@@ -5,9 +5,13 @@
     <div class = "card-contents">
         <p>Event: {{event.name}}</p>
         <p>Location: {{event.location}}</p>
-        <p>Sport: {{event.sport}}</p>
         <p>Date: {{event.date}}</p>
+        <p>Sport: {{event.sport}}</p>
         <p>Description: {{event.description}}</p>
+        <div>
+            <img src="{{ event.map_url }}" alt="Static Map" width="400" height="400">
+            <p><a href="https://www.google.com/maps/dir/?api=1&destination={{ event.location }}" target="_blank">Get Directions</a></p>
+        </div>
     </div>
     <a href="{% url 'events_update' event.id %}">Edit</a>
     <a href="{% url 'events_delete' event.id %}">Delete</a>
