@@ -1,15 +1,7 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 offset-md-3 auth-section">
-            <!-- ... -->
-        </div>
-    </div>
-</div>
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 offset-md-2 search-bar">
-            <input class="form-control" type="text" placeholder="Search events... ">
-        </div>
-    </div>
-</div>
+.bg-image {
+    background-image: url('{% static "home/img/background.png" %}');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}

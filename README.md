@@ -33,7 +33,7 @@ Picture a world where the roar of the crowd and the thrill of the game come toge
 
 # Next Steps
 
-- Permit users to monetize events that they host
+- Permit users to monetize events that they host (through planning, charity, etc.)
 - Give users the option to bookmark events
 - Detail a friends function where users can follow and interact with other users
 - Optimize app design for mobile users
