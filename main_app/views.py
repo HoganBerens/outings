@@ -9,9 +9,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import CommentForm
 import googlemaps
 from googlemaps import Client as GoogleMapsClient
-import os
-api_key = os.environ.get('GOOGLE_API_KEY')
-gmaps = googlemaps.Client(key=api_key)
+gmaps = googlemaps.Client(key='AIzaSyD9M6_cWgpOVDC9E2IuAWNokGcwdkeODHg')
+
+
 
 # Create your views here.
 def home(request):
@@ -49,7 +49,7 @@ class EventCreate(LoginRequiredMixin, CreateView):
      
         map_url = ""
 
-        
+        api_key = "AIzaSyD9M6_cWgpOVDC9E2IuAWNokGcwdkeODHg"  
         gmaps_client = GoogleMapsClient(api_key)
 
         geocode_result = gmaps_client.geocode(location)

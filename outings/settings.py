@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 
+
 ]
 
 MIDDLEWARE = [
@@ -130,4 +131,6 @@ LOGOUT_REDIRECT_URL = "/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+GOOGLE_API_KEY = 'AIzaSyD9M6_cWgpOVDC9E2IuAWNokGcwdkeODHg'
 
