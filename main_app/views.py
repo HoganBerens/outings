@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django import forms
 from .models import Event, Comment
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
@@ -6,6 +7,10 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import CommentForm
+import googlemaps
+from googlemaps import Client as GoogleMapsClient
+gmaps = googlemaps.Client(key='AIzaSyD9M6_cWgpOVDC9E2IuAWNokGcwdkeODHg')
+
 
 
 # Create your views here.
@@ -23,18 +28,49 @@ def events_index(request):
 def events_detail(request, event_id):
     event = Event.objects.get(id=event_id)
     comment_form = CommentForm()
-    return render(request, 'events/detail.html', {
-        'event' : event,
+    
+    context = {
+        'event': event,
         'comment_form': comment_form,
-    })
+    }
+    
+    return render(request, 'events/detail.html', context)
+
 
 
 class EventCreate(LoginRequiredMixin, CreateView):
     model = Event
-    fields = ["name", "location", "sport", "description"]
+    fields = ["name", "location", "date", "sport", "description"]
     success_url = "/events"
 
+   
     def form_valid(self, form):
+        location = form.cleaned_data['location']
+     
+        map_url = ""
+
+        api_key = "AIzaSyD9M6_cWgpOVDC9E2IuAWNokGcwdkeODHg"  
+        gmaps_client = GoogleMapsClient(api_key)
+
+        geocode_result = gmaps_client.geocode(location)
+        if not geocode_result:
+            form.add_error('location','Location not found, please enter a valid adress.')
+            return self.form_invalid(form)
+        if geocode_result:
+            latitude = geocode_result[0]['geometry']['location']['lat']
+            longitude = geocode_result[0]['geometry']['location']['lng']
+
+            map_params = {
+                "center": f"{latitude},{longitude}",
+                "zoom": 12,
+                "size": "400x400",
+                "markers": f"color:blue|label:D|{latitude},{longitude}",
+                "key": api_key,
+            }
+
+            map_url = f"https://maps.googleapis.com/maps/api/staticmap?center={latitude},{longitude}&zoom=12&size=400x400&markers=color:blue|label:D|{latitude},{longitude}&key={api_key}"
+
+        form.instance.map_url = map_url
         form.instance.user = self.request.user
         return super().form_valid(form)
 
