@@ -1,4 +1,34 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %}
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="text-center">
+        <h1>Welcome to Outings and Occurrences</h1>
+        <p>Find and join exciting sports events near you!</p>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+            Learn More
+        </button>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel">About Outings and Occurrences</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Our platform connects sports enthusiasts, allowing them to discover and participate in various sporting events in their area.</p>
+                <p>Whether you're a fan, a casual player or a dedicated athlete, our platform offers a wide range of events for you to join and enjoy!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div>HomePage</div>
 <div>All Events</div>
 {% for event in events %}
@@ -13,5 +43,4 @@
   </select>
   <input type="submit" class="btn" value="add filters" />
 </form>
-
 {% endblock %}
