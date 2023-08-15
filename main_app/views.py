@@ -10,8 +10,10 @@ from .forms import CommentForm
 import googlemaps
 from googlemaps import Client as GoogleMapsClient
 import os
-api_key = os.environ.get('GOOGLE_API_KEY')
+
+api_key = os.environ.get("GOOGLE_API_KEY")
 gmaps = googlemaps.Client(key=api_key)
+
 
 # Create your views here.
 def dashboard(request):
@@ -32,7 +34,8 @@ def events_index(request):
 
 
 def filter_sport(request):
-    events = Event.objects.filter(sport=request)
+    filtered_sport = request.POST["sport"]
+    events = Event.objects.filter(sport=filtered_sport)
     return render(request, "home.html", {"events": events})
 
 
@@ -40,7 +43,6 @@ def filter_sport(request):
 def events_detail(request, event_id):
     event = Event.objects.get(id=event_id)
     comment_form = CommentForm()
-<<<<<<< HEAD
     return render(
         request,
         "events/detail.html",
@@ -49,16 +51,6 @@ def events_detail(request, event_id):
             "comment_form": comment_form,
         },
     )
-=======
-    
-    context = {
-        'event': event,
-        'comment_form': comment_form,
-    }
-    
-    return render(request, 'events/detail.html', context)
-
->>>>>>> main
 
 
 class EventCreate(LoginRequiredMixin, CreateView):
@@ -66,22 +58,22 @@ class EventCreate(LoginRequiredMixin, CreateView):
     fields = ["name", "location", "date", "sport", "description"]
     success_url = "/events"
 
-   
     def form_valid(self, form):
-        location = form.cleaned_data['location']
-     
+        location = form.cleaned_data["location"]
+
         map_url = ""
 
-        
         gmaps_client = GoogleMapsClient(api_key)
 
         geocode_result = gmaps_client.geocode(location)
         if not geocode_result:
-            form.add_error('location','Location not found, please enter a valid adress.')
+            form.add_error(
+                "location", "Location not found, please enter a valid adress."
+            )
             return self.form_invalid(form)
         if geocode_result:
-            latitude = geocode_result[0]['geometry']['location']['lat']
-            longitude = geocode_result[0]['geometry']['location']['lng']
+            latitude = geocode_result[0]["geometry"]["location"]["lat"]
+            longitude = geocode_result[0]["geometry"]["location"]["lng"]
 
             map_params = {
                 "center": f"{latitude},{longitude}",

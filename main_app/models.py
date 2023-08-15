@@ -10,25 +10,19 @@ ATTENDING = (("Y", "Yes"), ("N", "No"))
 class Event(models.Model):
     name = models.CharField(max_length=100)
     location = models.CharField(max_length=100)
-    date = models.DateField('Party Date', default='2023-08-28')
+    date = models.DateField("Party Date", default="2023-08-28")
     sport = models.CharField(max_length=1, choices=SPORTS, default=SPORTS[0][0])
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.TextField(max_length=500)
     map_url = models.URLField(blank=True)
-    
+
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
-<<<<<<< HEAD
         return reverse("detail", kwargs={"event_id": self.id})
 
 
-=======
-        return reverse('detail', kwargs={'event_id': self.id})
-  
-    
->>>>>>> main
 class Comment(models.Model):
     comment = models.TextField(max_length=200)
     attending = models.CharField(
