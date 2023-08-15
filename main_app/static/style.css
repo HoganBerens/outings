@@ -1,7 +1,29 @@
-.bg-image {
-    background-image: url('{% static "home/img/background.png" %}');
-    background-size: cover;
+/* static/css/custom.css */
+.home-background {
+    background-image: url('./img/cq5dam.web.1600.800.jpg'); 
+    background-size: cover; /* Stretch the image to cover the entire container */
+    background-repeat: no-repeat; /* Prevent repeating the image */
     background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
 }
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 auth-section">
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2 search-bar">
+            <input class="form-control" type="text" placeholder="Search events... ">
+        </div>
+    </div>
+</div>

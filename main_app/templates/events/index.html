@@ -1,27 +1,30 @@
 {% extends 'base.html' %} {% block content %}
 <div class="container mt-5">
-  <h1 class="mb-4">Event List</h1>
-  {% if events %}
-  <div class="row">
-      {% for event in events %}
-      <div class="col-md-4 mb-4">
-          <a href="{% url 'detail' event.id %}">
-              <div class="card">
-                  <div class="card-body">
-                      <h5 class="card-title">{{ event.name }}</h5>
-                      <p class="card-text"><strong>Location:</strong> {{ event.location }}</p>
-                      <p class="card-text"><strong>Date:</strong> {{ event.date }}</p>
-                      <p class="card-text"><strong>Sport:</strong> {{ event.sport }}</p>
-                      <p class="card-text">{{ event.description }}</p>
-                  </div>
-              </div>
-          </a>
-      </div>
-      {% endfor %}
-  </div>
-  {% else %}
-  <div class="alert alert-warning" role="alert">
-      <h5 class="alert-heading">You haven't created any events yet</h5>
-  </div>
+    <h1 class="mb-4">Event List</h1>
+    <div class="row">
+        {% if events %}
+        {% for event in events %}
+        <div class="col-md-4 mb-4">
+            <a href="{% url 'detail' event.id %}">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ event.name }}</h5>
+                        <p class="card-text"><strong>Location:</strong> {{ event.location }}</p>
+                        <p class="card-text"><strong>Date:</strong> {{ event.date }}</p>
+                        <p class="card-text"><strong>Sport:</strong> {{ event.sport }}</p>
+                        <p class="card-text">{{ event.description }}</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="col">
+            <div class="alert alert-warning" role="alert">
+                <h5 class="alert-heading">You haven't created any events yet</h5>
+            </div>
+        </div>
+        {% endif %}
+    </div>
 </div>
-{% endif %} {% endblock %}
+{% endblock %}
