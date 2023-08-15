@@ -1,3 +1,17 @@
 {% extends "base.html" %} {% block content %}
 <div>HomePage</div>
+<div>All Events</div>
+{% for event in events %}
+<div>{{ event }}</div>
+{% endfor %}
+<form action="{% url 'filter_sport' %}" method="POST">
+  {% csrf_token %}
+  <select name="sport">
+    <option>Basketball</option>
+    <option>Baseball</option>
+    <option>Football</option>
+  </select>
+  <input type="submit" class="btn" value="add filters" />
+</form>
+
 {% endblock %}

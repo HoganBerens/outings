@@ -10,32 +10,47 @@ from .forms import CommentForm
 import googlemaps
 from googlemaps import Client as GoogleMapsClient
 import os
-api_key = os.environ.get('GOOGLE_API_KEY')
+
+api_key = os.environ.get("GOOGLE_API_KEY")
 gmaps = googlemaps.Client(key=api_key)
 
+
 # Create your views here.
+def dashboard(request):
+    return render(request, "dashboard.html")
+
+
+@login_required
 def home(request):
-    return render(request, "home.html")
+    events = Event.objects.all()
+    return render(request, "home.html", {"events": events})
 
 
 @login_required
 def events_index(request):
     events = Event.objects.filter(user=request.user)
-   
+
     return render(request, "events/index.html", {"events": events})
+
+
+def filter_sport(request):
+    filtered_sport = request.POST["sport"]
+    events = Event.objects.filter(sport=filtered_sport)
+    return render(request, "home.html", {"events": events})
+
 
 @login_required
 def events_detail(request, event_id):
     event = Event.objects.get(id=event_id)
     comment_form = CommentForm()
-    
-    context = {
-        'event': event,
-        'comment_form': comment_form,
-    }
-    
-    return render(request, 'events/detail.html', context)
-
+    return render(
+        request,
+        "events/detail.html",
+        {
+            "event": event,
+            "comment_form": comment_form,
+        },
+    )
 
 
 class EventCreate(LoginRequiredMixin, CreateView):
@@ -43,22 +58,22 @@ class EventCreate(LoginRequiredMixin, CreateView):
     fields = ["name", "location", "date", "sport", "description"]
     success_url = "/events"
 
-   
     def form_valid(self, form):
-        location = form.cleaned_data['location']
-     
+        location = form.cleaned_data["location"]
+
         map_url = ""
 
-        
         gmaps_client = GoogleMapsClient(api_key)
 
         geocode_result = gmaps_client.geocode(location)
         if not geocode_result:
-            form.add_error('location','Location not found, please enter a valid adress.')
+            form.add_error(
+                "location", "Location not found, please enter a valid adress."
+            )
             return self.form_invalid(form)
         if geocode_result:
-            latitude = geocode_result[0]['geometry']['location']['lat']
-            longitude = geocode_result[0]['geometry']['location']['lng']
+            latitude = geocode_result[0]["geometry"]["location"]["lat"]
+            longitude = geocode_result[0]["geometry"]["location"]["lng"]
 
             map_params = {
                 "center": f"{latitude},{longitude}",
@@ -74,24 +89,25 @@ class EventCreate(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
+
 class EventUpdate(LoginRequiredMixin, UpdateView):
     model = Event
     fields = ["location", "sport", "description"]
-    
+
+
 class EventDelete(LoginRequiredMixin, DeleteView):
     model = Event
-    success_url = '/events'
-
+    success_url = "/events"
 
 
 @login_required
 def add_comment(request, event_id):
-  form = CommentForm(request.POST)
-  if form.is_valid():
-    new_comment= form.save(commit=False)
-    new_comment.event_id = event_id
-    new_comment.save()
-  return redirect('detail', event_id=event_id)
+    form = CommentForm(request.POST)
+    if form.is_valid():
+        new_comment = form.save(commit=False)
+        new_comment.event_id = event_id
+        new_comment.save()
+    return redirect("detail", event_id=event_id)
 
 
 def signup(request):
@@ -105,7 +121,7 @@ def signup(request):
             user = form.save()
             # This is how we log a user in via code
             login(request, user)
-            return redirect("/")
+            return redirect("/home/")
         else:
             error_message = "Invalid sign up - try again"
     # A bad POST or a GET request, so render signup.html with an empty form
