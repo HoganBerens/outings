@@ -15,10 +15,12 @@ class Event(models.Model):
     name = models.CharField(max_length=100)
     location = models.CharField(max_length=100)
     date = models.DateField("Party Date", default="2023-08-28")
-    sport = models.CharField(max_length=20, choices=SPORTS, default=SPORTS[0][0])
+    sport = models.CharField(max_length=100, choices=SPORTS, default=SPORTS[0][0])
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.TextField(max_length=500)
-    attendees = models.ManyToManyField(User, related_name='attending_events', blank=True)
+    attendees = models.ManyToManyField(
+        User, related_name="attending_events", blank=True
+    )
     map_url = models.URLField(blank=True)
 
     def __str__(self):
