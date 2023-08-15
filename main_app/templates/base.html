@@ -40,6 +40,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
         {% if user.is_authenticated %}
         <div class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Log Out</a></div>
+        <div class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></div>
         <div class="nav-item"><a class="nav-link" href="{% url 'index' %}">View All Your Events</a></div>
         <div class="nav-item"><a class="nav-link" href="{% url 'events_create' %}">Add an Event</a></div>
         <div class="nav-item dropdown">
