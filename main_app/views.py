@@ -18,7 +18,6 @@ gmaps = googlemaps.Client(key=api_key)
 # Create your views here.
 
 
-
 def home(request):
     events = Event.objects.all()
     return render(request, "home.html", {"events": events})
@@ -34,7 +33,7 @@ def events_index(request):
 def filter_sport(request):
     filtered_sport = request.POST["sport"]
     events = Event.objects.filter(sport=filtered_sport)
-    return render(request, "home.html", {"events": events})
+    return redirect(request, "home.html", {"events": events})
 
 
 @login_required
@@ -97,30 +96,27 @@ class EventDelete(LoginRequiredMixin, DeleteView):
     model = Event
     success_url = "/events"
 
+
 @login_required
 def add_comment(request, event_id):
     form = CommentForm(request.POST)
     event = Event.objects.get(id=event_id)
     if form.is_valid():
-        new_comment= form.save(commit=False)
+        new_comment = form.save(commit=False)
         new_comment.event_id = event_id
         new_comment.save()
-        attending_choice = request.POST.get('attending', 'N')
-        if attending_choice == 'Y':
+        attending_choice = request.POST.get("attending", "N")
+        if attending_choice == "Y":
             if not event.attendees.filter(id=request.user.id).exists():
                 event.attendees.add(request.user)
-                return redirect('detail', event_id=event_id)
-
-
+                return redirect("detail", event_id=event_id)
 
 
 @login_required
 def my_events(request):
     attending_events = Event.objects.filter(attendees=request.user)
-    context = {
-    'attending_events': attending_events
-    }
-    return render(request, 'events/myevents.html', context)
+    context = {"attending_events": attending_events}
+    return render(request, "events/myevents.html", context)
 
 
 def signup(request):
@@ -134,7 +130,7 @@ def signup(request):
             user = form.save()
             # This is how we log a user in via code
             login(request, user)
-            return redirect('home')
+            return redirect("home")
         else:
             error_message = "Invalid sign up - try again"
     # A bad POST or a GET request, so render signup.html with an empty form
