@@ -10,8 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
-from pathlib import Path
 import os
+from pathlib import Path
+import environ
+
+environ.Env()
+environ.Env.read_env()
 from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -81,6 +85,10 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "outings",
+        "USER": os.environ["DB_USER"],
+        "PASSWORD": os.environ["DB_PW"],
+        "HOST": os.environ["DB_HOST"],
+        "PORT": "5432",
     }
 }
 
