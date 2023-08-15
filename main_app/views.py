@@ -99,15 +99,30 @@ class EventDelete(LoginRequiredMixin, DeleteView):
     model = Event
     success_url = "/events"
 
-
 @login_required
 def add_comment(request, event_id):
     form = CommentForm(request.POST)
+    event = Event.objects.get(id=event_id)
     if form.is_valid():
-        new_comment = form.save(commit=False)
+        new_comment= form.save(commit=False)
         new_comment.event_id = event_id
         new_comment.save()
-    return redirect("detail", event_id=event_id)
+        attending_choice = request.POST.get('attending', 'N')
+        if attending_choice == 'Y':
+            if not event.attendees.filter(id=request.user.id).exists():
+                event.attendees.add(request.user)
+                return redirect('detail', event_id=event_id)
+
+
+
+
+@login_required
+def my_events(request):
+    attending_events = Event.objects.filter(attendees=request.user)
+    context = {
+    'attending_events': attending_events
+    }
+    return render(request, 'events/myevents.html', context)
 
 
 def signup(request):

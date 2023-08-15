@@ -14,6 +14,7 @@ class Event(models.Model):
     sport = models.CharField(max_length=1, choices=SPORTS, default=SPORTS[0][0])
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.TextField(max_length=500)
+    attendees = models.ManyToManyField(User, related_name='attending_events', blank=True)
     map_url = models.URLField(blank=True)
 
     def __str__(self):
