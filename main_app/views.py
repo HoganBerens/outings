@@ -17,11 +17,10 @@ gmaps = googlemaps.Client(key=api_key)
 
 # Create your views here.
 
-
 def home(request):
     events = Event.objects.all()
-    return render(request, "home.html", {"events": events})
 
+    return render(request, "home.html", {"events": events})
 
 @login_required
 def events_index(request):
@@ -96,6 +95,29 @@ class EventDelete(LoginRequiredMixin, DeleteView):
     model = Event
     success_url = "/events"
 
+@login_required
+def edit_comment(request, event_id, comment_id):
+    event = Event.objects.get(id=event_id)
+    comment = Comment.objects.get(id=comment_id)
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            attending_choice = request.POST.get('attending', 'N')
+            if attending_choice == 'Y':
+                form.save()
+            else:
+                event.attendees.remove(request.user)
+        return redirect('my_events')
+    else:
+        form = CommentForm(instance=comment)
+    context = {
+        'form': form,
+        'event_id': event_id,
+        'comment_id': comment_id
+    }
+
+    return render(request, 'main_app/comment_form.html' ,context)
+
 
 @login_required
 def add_comment(request, event_id):
@@ -110,7 +132,7 @@ def add_comment(request, event_id):
             if not event.attendees.filter(id=request.user.id).exists():
                 event.attendees.add(request.user)
                 return redirect("detail", event_id=event_id)
-
+    return redirect("detail", event_id=event_id)
 
 @login_required
 def my_events(request):
