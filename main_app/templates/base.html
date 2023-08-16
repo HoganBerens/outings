@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'home/css/bootstrap.css' %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
@@ -28,16 +29,50 @@
                 <a class="dropdown-item" href="#">Basketball</a>
                 <a class="dropdown-item" href="#">Baseball</a>
                 <a class="dropdown-item" href="#">Football</a> 
+        <div class="container">
+            <ul class="navbar-nav flex-grow-1"> <!-- Use flex-grow-1 to evenly distribute the nav items -->
+                {% if user.is_authenticated %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Log Out</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">View All Your Events</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'events_create' %}">Add an Event</a></li>
+                {% else %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'signup' %}">Sign Up</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Log In</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <nav class="d-flex justify-content-between align-items-start">
+            <div class="ml-auto d-flex align-items-center">
+                <div class="mr-3">HomePage</div>
+                <div>All Events</div>
+            </div>
+        </nav>
+        
+        <div class="d-flex justify-content-between align-items-start">
+            <div>
+                {% for event in events %}
+                <div>{{ event }}</div>
+                {% endfor %}
+            </div>
+            <div>
+                <form action="{% url 'filter_sport' %}" method="POST" class="form-inline mt-2">
+                    {% csrf_token %}
+                    <div class="form-group mr-3">
+                        <select name="sport" class="form-control">
+                            <option>Basketball</option>
+                            <option>Baseball</option>
+                            <option>Football</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Filters</button>
+                </form>
             </div>
         </div>
-        {% else %}
-        <div class="nav-item"><a class="nav-link" href="{% url 'signup' %}">Sign Up</a></div>
-        <div class="nav-item"><a class="nav-link" href="{% url 'login' %}">Log In</a></div>
-        {% endif %}
-    </nav>
+    </div>
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
 </body>
-<main class="container">
-    {% block content %}{% endblock %}
-</main>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </html>

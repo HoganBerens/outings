@@ -1,15 +1,20 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 offset-md-3 auth-section">
-            <!-- ... -->
-        </div>
-    </div>
-</div>
+body {
+    background-image: url('./img/cq5dam.web.1600.800.jpg');
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+}
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 offset-md-2 search-bar">
-            <input class="form-control" type="text" placeholder="Search events... ">
-        </div>
-    </div>
-</div>
+.navbar.navbar-expand-lg .navbar-nav {
+    list-style: none;
+    padding: 0; /* Optional: To remove any additional space */
+}
+
+.navbar.navbar-expand-lg .navbar-nav .nav-item {
+    margin: 0 10px;
+}
+
+.navbar.navbar-expand-lg .navbar-nav .nav-link {
+    padding: 0.5rem 1rem;
+    color: white;
+}
