@@ -17,8 +17,8 @@
         </div>
         <div class="mb-3">
           <label for="{{ form.date.id_for_label }}" class="form-label text-dark">Date</label>
-          <input type="date" class="form-control" value="{{form.date}}" >
-        </div>
+          <input type="date" class="form-control" value="{{ form.date.value}}" >
+      </div>      
         <div class="mb-3">
           <label for="{{ form.sport.id_for_label }}" class="form-label text-dark">Sport</label>
           {{ form.sport }}

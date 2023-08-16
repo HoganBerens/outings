@@ -19,7 +19,9 @@ gmaps = googlemaps.Client(key=api_key)
 
 def home(request):
     events = Event.objects.all()
-
+    if request.POST:
+        filtered_sport = request.POST.get("sport")  
+        events = Event.objects.filter(sport=filtered_sport)
     return render(request, "home.html", {"events": events})
 
 @login_required
@@ -30,9 +32,12 @@ def events_index(request):
 
 
 def filter_sport(request):
-    filtered_sport = request.POST["sport"]
+    filtered_sport = request.POST.get["sport"]
     events = Event.objects.filter(sport=filtered_sport)
-    return redirect(request, "home.html", {"events": events})
+    if request.method == "POST":
+        return redirect(request, "home.html", {"events": events})
+    else: 
+        return redirect('home')
 
 
 @login_required
