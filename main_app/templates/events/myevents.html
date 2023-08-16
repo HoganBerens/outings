@@ -1,29 +1,29 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<div class="container mt-5">
-    <h1 class="text-center mb-4">Events You Are Attending</h1>
-    {% if events %}
-    <ul class="list-unstyled">
-        {% for event in attending_events %}
-        <div class="card mb-4 mx-auto" style="max-width: 600px;">
-            <div class="card-body text-center">
-                <h5 class="card-title"><strong>Event:</strong> {{ event.name }}</h5>
-                <p class="card-text"><strong>Location:</strong> {{ event.location }}</p>
-                <p class="card-text"><strong>Date:</strong> {{ event.date }}</p>
-                <p class="card-text"><strong>Sport:</strong> {{ event.sport }}</p>
-                <p class="card-text"><strong>Description:</strong> {{ event.description }}</p>
-                <div class="mb-3">
-                    <img src="{{ event.map_url }}" alt="Static Map" class="img-fluid rounded" style="max-width: 100%;">
+<h1>Events You Are Attending</h1>
+{% if attending_events %}
+    <ul>
+    {% for event in attending_events %}
+        <div class="card">
+            <div class="card-contents">
+                <p>Event: {{ event.name }}</p>
+                <p>Location: {{ event.location }}</p>
+                <p>Date: {{ event.date }}</p>
+                <p>Sport: {{ event.sport }}</p>
+                <p>Description: {{ event.description }}</p>
+                <div>
+                    <img src="{{ event.map_url }}" alt="Static Map" width="400" height="400">
+                    <p><a href="https://www.google.com/maps/dir/?api=1&destination={{ event.location }}" target="_blank">Get Directions</a></p>
                 </div>
-                <p><a href="https://www.google.com/maps/dir/?api=1&destination={{ event.location }}" target="_blank" class="btn btn-primary">Get Directions</a></p>
+                {% for comment in event.comment_set.all %}
+                <a href="{% url 'edit_comment' event_id=event.id comment_id=comment.id %}">Edit Comment</a>
+            {% endfor %}
             </div>
         </div>
-        {% endfor %}
+    {% endfor %}
     </ul>
-    {% else %}
-    <div class="text-center">
-        <h5>You are not attending any events yet</h5>
-    </div>
-    {% endif %}
-</div>
+{% else %}
+    <h5>You are not attending any events yet</h5>
+{% endif %}
 {% endblock %}

@@ -19,8 +19,10 @@
             <ul class="navbar-nav flex-grow-1">
                 {% if user.is_authenticated %}
                 <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Log Out</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">View All Your Events</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'events_create' %}">Add an Event</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'my_events' %}">Events Attending</a></li>
                 {% else %}
                 <li class="nav-item"><a class="nav-link" href="{% url 'signup' %}">Sign Up</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Log In</a></li>
