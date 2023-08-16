@@ -21,11 +21,7 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=100)),
                 ('location', models.CharField(max_length=100)),
                 ('date', models.DateField(default='2023-08-28', verbose_name='Party Date')),
-<<<<<<< HEAD
-                ('sport', models.CharField(choices=[('F', 'Football'), ('B', 'Basketball'), ('B', 'Baseball')], default='F', max_length=100)),
-=======
                 ('sport', models.CharField(choices=[('Football', 'Football'), ('Basketball', 'Basketball'), ('Baseball', 'Baseball')], default='Football', max_length=100)),
->>>>>>> main
                 ('description', models.TextField(max_length=500)),
                 ('map_url', models.URLField(blank=True)),
                 ('attendees', models.ManyToManyField(blank=True, related_name='attending_events', to=settings.AUTH_USER_MODEL)),

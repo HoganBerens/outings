@@ -1,20 +1,59 @@
-body {
+.body {
     background-image: url('./img/cq5dam.web.1600.800.jpg');
     background-size: cover;
-    margin: 0;
-    padding: 0;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: Arial, sans-serif;
 }
 
-.navbar.navbar-expand-lg .navbar-nav {
-    list-style: none;
-    padding: 0; /* Optional: To remove any additional space */
+/* Style the navbar links */
+.navbar-nav .nav-link {
+    color: #333333;
+    margin-right: 15px;
+    font-weight: bold;
 }
 
-.navbar.navbar-expand-lg .navbar-nav .nav-item {
-    margin: 0 10px;
+/* Style the active link */
+.navbar-nav .nav-link.active {
+    color: #007bff;
 }
 
-.navbar.navbar-expand-lg .navbar-nav .nav-link {
-    padding: 0.5rem 1rem;
-    color: white;
+/* Style the container */
+.container {
+    padding-top: 20px;
+}
+
+/* Style the header */
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Style the card */
+.card {
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+/* Style the card contents */
+.card-contents {
+    padding: 15px;
+}
+
+/* Style the form */
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Style the buttons */
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+
+/* Style the form select */
+.form-control {
+    border-radius: 5px;
 }

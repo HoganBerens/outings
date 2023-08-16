@@ -28,28 +28,5 @@
         </div>
     </div>
 </div>
-
-<div class="container">
-    <nav class="d-flex justify-content-end align-items-start">
-        <form action="{% url 'filter_sport' %}" method="POST" class="form-inline mt-2">
-            {% csrf_token %}
-            <div class="form-group mr-3">
-                <select name="sport" class="form-control">
-                    <option>Basketball</option>
-                    <option>Baseball</option>
-                    <option>Football</option>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-primary">Add Filters</button>
-        </form>
-        <div class="d-flex flex-column">
-            <div class="mr-3">Home Page</div>
-            <div>All Events</div>
-        </div>
-    </nav>   
-
-    {% for event in events %}
-    <div>{{ event }}</div>
-    {% endfor %}
 </div>
 {% endblock %}
