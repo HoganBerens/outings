@@ -7,6 +7,39 @@
   </div>
 </div>
 
+<div class="d-flex justify-content-between align-items-start">
+  <div>
+    <div class="display-4">{{sport}}</div>
+    {% for event in events %}
+    <a href="{% url 'detail' event.id %}">
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title">{{ event.name }}</span>
+          <p>Location: {{ event.location }}</p>
+          <p>Date: {{ event.date }}</p>
+          <p>Sport: {{ event.sport }}</p>
+          <p>Description: {{ event.description }}</p>
+        </div>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+  <div>
+    <form action="{% url 'home' %}" method="POST" class="form-inline mt-2">
+      {% csrf_token %}
+      <div class="form-group mr-3">
+        <select name="sport" class="form-control">
+          <option hidden="true">Select a Sport</option>
+          <option>Basketball</option>
+          <option>Baseball</option>
+          <option>Football</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Add Filters</button>
+    </form>
+  </div>
+</div>
+
 <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
