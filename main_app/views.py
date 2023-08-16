@@ -64,7 +64,7 @@ class EventCreate(LoginRequiredMixin, CreateView):
         geocode_result = gmaps_client.geocode(location)
         if not geocode_result:
             form.add_error(
-                "location", "Location not found, please enter a valid address."
+                "location", "Location not found, please enter a valid adress."
             )
             return self.form_invalid(form)
         if geocode_result:
@@ -138,9 +138,6 @@ def delete_comment(request, event_id, comment_id):
     comment = Comment.objects.get(id=comment_id)
     event_id=event.id 
     comment_id=comment.id
-    print(comment)
-    
-    print(comment)
     event.attendees.remove(request.user)
     comment.delete()
 
