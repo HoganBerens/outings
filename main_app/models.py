@@ -32,7 +32,7 @@ class Event(models.Model):
 
 
 class Comment(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default= 1)
     comment = models.TextField(max_length=200)
     attending = models.CharField(
         max_length=1, choices=ATTENDING, default=ATTENDING[0][0]
