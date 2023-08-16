@@ -3,7 +3,11 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 
 # Create your models here.
-SPORTS = (("F", "Football"), ("B", "Basketball"), ("B", "Baseball"))
+SPORTS = (
+    ("Football", "Football"),
+    ("Basketball", "Basketball"),
+    ("Baseball", "Baseball"),
+)
 ATTENDING = (("Y", "Yes"), ("N", "No"))
 
 
@@ -14,7 +18,9 @@ class Event(models.Model):
     sport = models.CharField(max_length=100, choices=SPORTS, default=SPORTS[0][0])
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.TextField(max_length=500)
-    attendees = models.ManyToManyField(User, related_name='attending_events', blank=True)
+    attendees = models.ManyToManyField(
+        User, related_name="attending_events", blank=True
+    )
     map_url = models.URLField(blank=True)
 
     def __str__(self):
