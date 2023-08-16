@@ -17,22 +17,22 @@ gmaps = googlemaps.Client(key=api_key)
 
 # Create your views here.
 
-def home(request):
-    events = Event.objects.all()
 
-    return render(request, "home.html", {"events": events})
+def home(request):
+    sport = "All Events"
+    if request.POST:
+        sport = request.POST["sport"]
+        events = Event.objects.filter(sport=sport)
+    else:
+        events = Event.objects.all()
+    return render(request, "home.html", {"events": events, "sport": sport})
+
 
 @login_required
 def events_index(request):
     events = Event.objects.filter(user=request.user)
 
     return render(request, "events/index.html", {"events": events})
-
-
-def filter_sport(request):
-    filtered_sport = request.POST["sport"]
-    events = Event.objects.filter(sport=filtered_sport)
-    return redirect(request, "home.html", {"events": events})
 
 
 @login_required
@@ -95,28 +95,25 @@ class EventDelete(LoginRequiredMixin, DeleteView):
     model = Event
     success_url = "/events"
 
+
 @login_required
 def edit_comment(request, event_id, comment_id):
     event = Event.objects.get(id=event_id)
     comment = Comment.objects.get(id=comment_id)
-    if request.method == 'POST':
+    if request.method == "POST":
         form = CommentForm(request.POST)
         if form.is_valid():
-            attending_choice = request.POST.get('attending', 'N')
-            if attending_choice == 'Y':
+            attending_choice = request.POST.get("attending", "N")
+            if attending_choice == "Y":
                 form.save()
             else:
                 event.attendees.remove(request.user)
-        return redirect('my_events')
+        return redirect("my_events")
     else:
         form = CommentForm(instance=comment)
-    context = {
-        'form': form,
-        'event_id': event_id,
-        'comment_id': comment_id
-    }
+    context = {"form": form, "event_id": event_id, "comment_id": comment_id}
 
-    return render(request, 'main_app/comment_form.html' ,context)
+    return render(request, "main_app/comment_form.html", context)
 
 
 @login_required
@@ -133,6 +130,7 @@ def add_comment(request, event_id):
                 event.attendees.add(request.user)
                 return redirect("detail", event_id=event_id)
     return redirect("detail", event_id=event_id)
+
 
 @login_required
 def my_events(request):
