@@ -17,11 +17,10 @@ gmaps = googlemaps.Client(key=api_key)
 
 # Create your views here.
 
-
 def home(request):
     events = Event.objects.all()
-    return render(request, "home.html", {"events": events})
 
+    return render(request, "home.html", {"events": events})
 
 @login_required
 def events_index(request):
@@ -110,7 +109,7 @@ def add_comment(request, event_id):
             if not event.attendees.filter(id=request.user.id).exists():
                 event.attendees.add(request.user)
                 return redirect("detail", event_id=event_id)
-
+    return redirect("detail", event_id=event_id)
 
 @login_required
 def my_events(request):

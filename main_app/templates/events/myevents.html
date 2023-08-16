@@ -1,24 +1,27 @@
 {% extends 'base.html' %}
+
 {% block content %}
 <h1>Events You Are Attending</h1>
+{% if attending_events %}
     <ul>
-    {% if events %} 
     {% for event in attending_events %}
-        <div class = "card">
-            <div class = "card-contents">
-                <p>Event: {{event.name}}</p>
-                <p>Location: {{event.location}}</p>
-                <p>Date: {{event.date}}</p>
-                <p>Sport: {{event.sport}}</p>
-                <p>Description: {{event.description}}</p>
+        <div class="card">
+            <div class="card-contents">
+                <p>Event: {{ event.name }}</p>
+                <p>Location: {{ event.location }}</p>
+                <p>Date: {{ event.date }}</p>
+                <p>Sport: {{ event.sport }}</p>
+                <p>Description: {{ event.description }}</p>
                 <div>
                     <img src="{{ event.map_url }}" alt="Static Map" width="400" height="400">
                     <p><a href="https://www.google.com/maps/dir/?api=1&destination={{ event.location }}" target="_blank">Get Directions</a></p>
                 </div>
+                <!-- <a href="{% url 'comment_update' event.id comment.id %}">Edit</a> -->
             </div>
         </div>
+    {% endfor %}
     </ul>
-    {% endfor %}{% else %}
+{% else %}
     <h5>You are not attending any events yet</h5>
-    {% endif %} 
+{% endif %}
 {% endblock %}
