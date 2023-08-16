@@ -57,3 +57,34 @@ h1 {
 .form-control {
     border-radius: 5px;
 }
+
+.card-baseball .card-content {
+    color: rgb(28, 124, 35); 
+    background-image: url('./img/baseball_card.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Graduate', cursive;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 14.5px;
+}
+
+.card-football .card-content {
+    color: rgb(228, 25, 25); 
+    background-image: url('./img/football_card.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Ultra', serif;
+    text-align: center;
+    font-weight: lighter;
+}
+
+.card-basketball .card-content {
+    color: rgb(238, 233, 94); 
+    background-image: url('./img/basketball_card.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Anton', sans-serif;
+    text-align: center;
+    font-size: 16px;
+}
