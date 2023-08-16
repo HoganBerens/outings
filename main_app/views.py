@@ -64,7 +64,7 @@ class EventCreate(LoginRequiredMixin, CreateView):
         geocode_result = gmaps_client.geocode(location)
         if not geocode_result:
             form.add_error(
-                "location", "Location not found, please enter a valid adress."
+                "location", "Location not found, please enter a valid address."
             )
             return self.form_invalid(form)
         if geocode_result:
@@ -173,3 +173,8 @@ def signup(request):
     form = UserCreationForm()
     context = {"form": form, "error_message": error_message}
     return render(request, "registration/signup.html", context)
+
+def index(request):
+    selected_sport = request.GET.get('sport', 'Basketball')  # Default to Basketball
+    context = {'events': events, 'selected_sport': selected_sport}
+    return render(request, 'index.html', context)
