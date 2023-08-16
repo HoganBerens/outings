@@ -1,38 +1,42 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Event Details</h1>
-<div class = "card">
-    <div class = "card-contents">
-        <p>Event: {{event.name}}</p>
-        <p>Location: {{event.location}}</p>
-        <p>Date: {{event.date}}</p>
-        <p>Sport: {{event.sport}}</p>
-        <p>Description: {{event.description}}</p>
-        <div>
-            <img src="{{ event.map_url }}" alt="Static Map" width="400" height="400">
-            <p><a href="https://www.google.com/maps/dir/?api=1&destination={{ event.location }}" target="_blank">Get Directions</a></p>
-        </div>
+<div class="container text-center">
+  <h1>Event Details</h1>
+  <div class="card {% if event.sport == 'Baseball' %} card-baseball
+                {% elif event.sport == 'Football' %} card-football
+                {% elif event.sport == 'Basketball' %} card-basketball
+                {% endif %}">
+    <div class="card-contents">
+      <p>Event: {{event.name}}</p>
+      <p>Location: {{event.location}}</p>
+      <p>Date: {{event.date}}</p>
+      <p>Sport: {{event.sport}}</p>
+      <p>Description: {{event.description}}</p>
+      <div>
+        <img src="{{ event.map_url }}" alt="Static Map" width="400" height="400">
+        <p><a href="https://www.google.com/maps/dir/?api=1&destination={{ event.location }}" target="_blank">Get Directions</a></p>
+      </div>
     </div>
-    <a href="{% url 'events_update' event.id %}">Edit</a>
-    <a href="{% url 'events_delete' event.id %}">Delete</a>
-    
-</div>
-<form action="{% url 'add_comment' event.id %}" method = "POST">
+    <a href="{% url 'events_update' event.id %}" class="btn btn-primary">Edit</a>
+    <a href="{% url 'events_delete' event.id %}" class="btn btn-danger">Delete</a>
+  </div>
+  <form action="{% url 'add_comment' event.id %}" method="POST">
     {% csrf_token %}
     {{ comment_form.as_p }}
-    <input type="submit" class="btn" value="Add Comment">
-</form>
-<table>
+    <input type="submit" class="btn btn-primary mt-3" value="Add Comment">
+  </form>
+  <table class="table mt-3">
     <thead>
-        <tr><th>Comment</th><th>Attending</th></tr>
+      <tr><th>Comment</th><th>Attending</th></tr>
     </thead>
     <tbody>
-        {% for comment in event.comment_set.all %}
-        <tr>
-            <td>{{comment.comment}}</td>
-            <td>{{comment.attending}}</td>
-        </tr>
-        {% endfor %}
+      {% for comment in event.comment_set.all %}
+      <tr>
+        <td>{{comment.comment}}</td>
+        <td>{{comment.attending}}</td>
+      </tr>
+      {% endfor %}
     </tbody>
-</table>
+  </table>
+</div>
 {% endblock %}
