@@ -107,6 +107,7 @@ def add_comment(request, event_id):
         attending_choice = request.POST.get("attending", "N")
         if attending_choice == "Y":
             if not event.attendees.filter(id=request.user.id).exists():
+                print(event.attendees)
                 event.attendees.add(request.user)
                 return redirect("detail", event_id=event_id)
     return redirect("detail", event_id=event_id)
