@@ -16,7 +16,9 @@
                     <img src="{{ event.map_url }}" alt="Static Map" width="400" height="400">
                     <p><a href="https://www.google.com/maps/dir/?api=1&destination={{ event.location }}" target="_blank">Get Directions</a></p>
                 </div>
-                <!-- <a href="{% url 'comment_update' event.id comment.id %}">Edit</a> -->
+                {% for comment in event.comment_set.all %}
+                <a href="{% url 'edit_comment' event_id=event.id comment_id=comment.id %}">Edit Comment</a>
+            {% endfor %}
             </div>
         </div>
     {% endfor %}

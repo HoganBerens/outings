@@ -15,26 +15,14 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
-        {% if user.is_authenticated %}
-        <div class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Log Out</a></div>
-        <div class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></div>
-        <div class="nav-item"><a class="nav-link" href="{% url 'index' %}">View All Your Events</a></div>
-        <div class="nav-item"><a class="nav-link" href="{% url 'my_events' %}">Events Attending</a></div>
-        <div class="nav-item"><a class="nav-link" href="{% url 'events_create' %}">Add an Event</a></div>
-        <div class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Sports
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Basketball</a>
-                <a class="dropdown-item" href="#">Baseball</a>
-                <a class="dropdown-item" href="#">Football</a> 
         <div class="container">
             <ul class="navbar-nav flex-grow-1"> <!-- Use flex-grow-1 to evenly distribute the nav items -->
                 {% if user.is_authenticated %}
                 <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Log Out</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">View All Your Events</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'events_create' %}">Add an Event</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'my_events' %}">Events Attending</a></li>
                 {% else %}
                 <li class="nav-item"><a class="nav-link" href="{% url 'signup' %}">Sign Up</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Log In</a></li>
