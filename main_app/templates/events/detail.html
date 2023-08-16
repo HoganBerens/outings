@@ -17,8 +17,8 @@
         <p><a href="https://www.google.com/maps/dir/?api=1&destination={{ event.location }}" target="_blank">Get Directions</a></p>
       </div>
     </div>
-    <a href="{% url 'events_update' event.id %}">Edit</a>
-    <a href="{% url 'events_delete' event.id %}">Delete</a>
+    <a href="{% url 'events_update' event.id %}" class="btn btn-primary">Edit</a>
+    <a href="{% url 'events_delete' event.id %}" class="btn btn-danger">Delete</a>
   </div>
   <form action="{% url 'add_comment' event.id %}" method="POST">
     {% csrf_token %}
