@@ -1,32 +1,42 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-<h1>Events You Are Attending</h1>
-{% if attending_events %}
-    <ul>
-    {% for event in attending_events %}
-        <div class="card">
-            <div class="card-contents">
-                <p>Event: {{ event.name }}</p>
-                <p>Location: {{ event.location }}</p>
-                <p>Date: {{ event.date }}</p>
-                <p>Sport: {{ event.sport }}</p>
-                <p>Description: {{ event.description }}</p>
-                <div>
-                    <img src="{{ event.map_url }}" alt="Static Map" width="400" height="400">
-                    <p><a href="https://www.google.com/maps/dir/?api=1&destination={{ event.location }}" target="_blank">Get Directions</a></p>
-                </div>
-                {% for comment in event.comment_set.all %}
-                <a href="{% url 'edit_comment' event.id comment.id %}">Edit Comment</a>
-                <a href="{% url 'delete_comment' event.id comment.id %}">Not Attending? Delete Event from Attending Events</a>
-            {% endfor %}
-            
-  
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h1 class="text-center">Events You Are Attending</h1>
+      {% if attending_events %}
+      <div class="row">
+        {% for event in attending_events %}
+        <div>
+          <div class="card {% if event.sport == 'Baseball' %}card-baseball
+                            {% elif event.sport == 'Football' %}card-football
+                            {% elif event.sport == 'Basketball' %}card-basketball
+                            {% endif %}">
+            <div class="card-content">
+              <p>Event: {{ event.name }}</p>
+              <p>Location: {{ event.location }}</p>
+              <p>Date: {{ event.date }}</p>
+              <p>Sport: {{ event.sport }}</p>
+              <p>Description: {{ event.description }}</p>
+              <div class="text-center">
+                <img src="{{ event.map_url }}" alt="Static Map" width="400" height="400">
+                <p><a href="https://www.google.com/maps/dir/?api=1&destination={{ event.location }}" target="_blank">Get Directions</a></p>
+              </div>
+              {% for comment in event.comment_set.all %}
+              <a href="{% url 'edit_comment' event.id comment.id %}">Edit Comment</a>
+              <a href="{% url 'delete_comment' event.id comment.id %}">Not Attending? Delete Event from Attending Events</a>
+          {% endfor %}
             </div>
+          </div>
         </div>
-    {% endfor %}
-    </ul>
-{% else %}
-    <h5>You are not attending any events yet</h5>
-{% endif %}
+        {% endfor %}
+      </div>
+      {% else %}
+      <h5 class="text-center">You are not attending any events yet</h5>
+      {% endif %}
+    </div>
+  </div>
+</div>
 {% endblock %}

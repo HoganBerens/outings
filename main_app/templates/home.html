@@ -1,4 +1,7 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% if not user.is_authenticated %}
 <div class="container d-flex justify-content-center align-items-center vh-100">
   <div class="text-center">
     <h1>Welcome to Outings and Occurrences</h1>
@@ -6,40 +9,6 @@
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Learn More</button>
   </div>
 </div>
-
-<div class="d-flex justify-content-between align-items-start">
-  <div>
-    <div class="display-4">{{sport}}</div>
-    {% for event in events %}
-    <a href="{% url 'detail' event.id %}">
-      <div class="card">
-        <div class="card-content">
-          <span class="card-title">{{ event.name }}</span>
-          <p>Location: {{ event.location }}</p>
-          <p>Date: {{ event.date }}</p>
-          <p>Sport: {{ event.sport }}</p>
-          <p>Description: {{ event.description }}</p>
-        </div>
-      </div>
-    </a>
-    {% endfor %}
-  </div>
-  <div>
-    <form action="{% url 'home' %}" method="POST" class="form-inline mt-2">
-      {% csrf_token %}
-      <div class="form-group mr-3">
-        <select name="sport" class="form-control">
-          <option hidden="true">Select a Sport</option>
-          <option>Basketball</option>
-          <option>Baseball</option>
-          <option>Football</option>
-        </select>
-      </div>
-      <button type="submit" class="btn btn-primary">Add Filters</button>
-    </form>
-  </div>
-</div>
-
 <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -49,7 +18,7 @@
       </div>
       <div class="modal-body">
         <p>Our platform connects sports enthusiasts, allowing them to discover and participate in various sporting events in their area.</p>
-        <p>Whether you're a fan, a casual player or a dedicated athlete, our platform offers a wide range of events for you to join and enjoy!</p>
+        <p>Whether you're a fan, a casual player, or a dedicated athlete, our platform offers a wide range of events for you to join and enjoy!</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -57,4 +26,34 @@
     </div>
   </div>
 </div>
+{% endif %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 mb-4">
+      <div class="display-4">{{ sport }}</div>
+    </div>
+  </div>
+  
+  <div class="row">
+    {% for event in events %}
+    <div class="col-md-4 mb-4">
+      <a href="{% url 'detail' event.id %}">
+        <div class="card {% if event.sport == 'Baseball' %} card-baseball
+                         {% elif event.sport == 'Football' %} card-football
+                         {% elif event.sport == 'Basketball' %} card-basketball
+                         {% endif %}">
+          <div class="card-content">
+            <span class="card-title">{{ event.name }}</span>
+            <p>Location: {{ event.location }}</p>
+            <p>Date: {{ event.date }}</p>
+            <p>Sport: {{ event.sport }}</p> 
+            <p>Description: {{ event.description }}</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
 {% endblock %}
