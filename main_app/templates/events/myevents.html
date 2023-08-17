@@ -9,30 +9,28 @@
       {% if attending_events %}
       <div class="row">
         {% for event in attending_events %}
-        <div>
+        <div class="col-md-6 mb-4">
           <div class="card {% if event.sport == 'Baseball' %}card-baseball
                             {% elif event.sport == 'Football' %}card-football
                             {% elif event.sport == 'Basketball' %}card-basketball
                             {% endif %}">
             <div class="card-content">
-              <p>Event: {{ event.name }}</p>
-              <p>Host: {{event.user.username}}</p>
-              <p>Location: {{ event.location }}</p>
-              <p>Date: {{ event.date }}</p>
-              <p>Sport: {{ event.sport }}</p>
-              <p>Description: {{ event.description }}</p>
-              <div class="text-center">
-                <img src="{{ event.map_url }}" alt="Static Map" width="200" height="200">
+              <h5 class="card-title">{{ event.name }}</h5>
+              <p class="card-text">Host: {{event.user.username}}</p>
+              <p class="card-text">Location: {{ event.location }}</p>
+              <p class="card-text">Date: {{ event.date }}</p>
+              <p class="card-text">Sport: {{ event.sport }}</p>
+              <p class="card-text">Description: {{ event.description }}</p>
+              <div class="text-center mt-3">
+                <img src="{{ event.map_url }}" alt="Static Map" class="img-fluid" style="max-width: 200px;">
                 <p><a href="https://www.google.com/maps/dir/?api=1&destination={{ event.location }}" target="_blank">Get Directions</a></p>
               </div>
-                {% for comment in event.comment_set.all %}
-                {% if request.user == comment.user %} 
-                <a href="{% url 'edit_comment' event.id comment.id %}">Edit Comment</a><br>
-                ||
-                <a href="{% url 'delete_comment' event.id comment.id %}">Delete Event from Attending Events</a><br><br>
-                {% endif %}
-            {% endfor %}
-          
+              {% for comment in event.comment_set.all %}
+              {% if request.user == comment.user %}
+              <a href="{% url 'edit_comment' event.id comment.id %}" class="btn btn-secondary btn-sm">Edit Comment</a>
+              <a href="{% url 'delete_comment' event.id comment.id %}" class="btn btn-danger btn-sm">Delete Event from Attending Events</a><br><br>
+              {% endif %}
+              {% endfor %}
             </div>
           </div>
         </div>
