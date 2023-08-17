@@ -47,12 +47,12 @@
     <tbody>
       {% for comment in event.comment_set.all %}
       <tr>
-        <td>{{comment.user.username}}</td>
-        <td>{{comment.comment}}</td>
-        <td>{{comment.attending}}</td>
+        <td>{{ comment.user.username }}</td>
+        <td>{{ comment.comment }}</td>
+        <td>{{ comment.attending }}</td>
       </tr>
-      {% endfor %}
-    </tbody>
+    {% endfor %}
+    
   </table>
 </div>
 {% endblock %}
