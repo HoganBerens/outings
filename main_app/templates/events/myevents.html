@@ -21,11 +21,11 @@
               <p>Sport: {{ event.sport }}</p>
               <p>Description: {{ event.description }}</p>
               <div class="text-center">
-                <img src="{{ event.map_url }}" alt="Static Map" width="400" height="400">
+                <img src="{{ event.map_url }}" alt="Static Map" width="200" height="200">
                 <p><a href="https://www.google.com/maps/dir/?api=1&destination={{ event.location }}" target="_blank">Get Directions</a></p>
               </div>
               {% for comment in event.comment_set.all %}
-              <a href="{% url 'edit_comment' event.id comment.id %}">Edit Comment</a>
+              <a href="{% url 'edit_comment' event.id comment.id %}">Edit Comment</a><br>
               <a href="{% url 'delete_comment' event.id comment.id %}">Not Attending? Delete Event from Attending Events</a>
           {% endfor %}
             </div>

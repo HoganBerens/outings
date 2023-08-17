@@ -29,7 +29,7 @@ Picture a world where the roar of the crowd and the thrill of the game come toge
 
 - [Pitch Deck](https://docs.google.com/presentation/d/1e7EBcHRoVNb1EOOLkkf-WwUtXmWMCLGt8VCkNTIHNH0/edit#slide=id.g114361a249a_0_0)
 - [Trello](https://trello.com/b/M8FBizu5/project-3)
-- [Outings and Occurrences](https://herokuapp.com/)
+- [Outings and Occurrences](https://outings-af5fe22770a5.herokuapp.com/)
 
 # Next Steps
 

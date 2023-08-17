@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container mt-5" >
+<div class="container mt-5">
   <div class="card mx-auto" style="max-width: 600px; background-color: transparent;">
-    <div class="card-body" >
+    <div class="card-body text-center">
       {% if object %}
       <h1 class="text-center">Edit <span class="text-primary">{{ object.name }}</span></h1>
       {% else %}
@@ -25,12 +25,12 @@
           {{ form.sport }}
         </div>
         <div class="mb-3">
-          <label for="{{ form.description.id_for_label }}" class="form-label text-dark">Description</label>
-          {{ form.description }}
-        </div>
-        <div class="mb-3">
           <label for="{{ form.location.id_for_label }}" class="form-label text-dark">Location</label>
           {{ form.location }} {{ form.location.errors }}
+        </div>
+        <div class="mb-3">
+          <label for="{{ form.description.id_for_label }}" class="form-label text-dark">Description</label>
+          <textarea class="form-control" name="{{ form.description.name }}" rows="5" placeholder="What's this event about?">{{ form.description.value|default:'' }}</textarea>
         </div>
         <div class="text-center">
           <button type="submit" class="btn btn-primary">Submit</button>
