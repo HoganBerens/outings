@@ -1,128 +1,134 @@
 body {
-    background-image: url('./img/cq5dam.web.1600.800.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    font-family: Arial, sans-serif;
-    background-attachment: fixed;
+  background-image: url('./img/cq5dam.web.1600.800.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: Arial, sans-serif;
+  background-attachment: fixed;
 }
 
 /* Style the navbar links */
 .navbar-nav .nav-link {
-    color: #333333;
-    margin-right: 15px;
-    font-weight: bold;
+  color: #333333;
+  margin-right: 15px;
+  font-weight: bold;
 }
 
 /* Style the active link */
 .navbar-nav .nav-link.active {
-    color: #007bff;
+  color: #007bff;
 }
 
 /* Style the container */
 .container {
-    padding-top: 20px;
+  padding-top: 20px;
 }
 
 /* Style the header */
 h1 {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    color:#333333;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color:#333333;
 }
 
 /* Style the card */
 .card {
-    border: 1px solid #e5e5e5;
-    border-radius: 5px;
-    margin-bottom: 20px;
+  border: 1px solid #e5e5e5;
+  border-radius: 5px;
+  margin-bottom: 20px;
 }
 
 /* Style the form */
 .form-group {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 /* Style the buttons */
 .btn-primary {
-    background-color: #007bff;
-    border: none;
+  background-color: #007bff;
+  border: none;
 }
 
 /* Style the form select */
 .form-control {
-    border-radius: 5px;
+  border-radius: 5px;
 }
 
 .card-baseball .card-content {
-  color: rgb(28, 124, 35); 
-  background-color: rgba(200, 200, 200, 0.5);
-  background-image: url('./img/Screenshot\ 2023-08-17\ at\ 12.20.52\ PM.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  font-family: 'Graduate', cursive;
-  text-align: center;
-  font-weight: bolder; 
-  font-size: 14.5px;
+color: rgb(28, 124, 35); 
+background-color: rgba(200, 200, 200, 0.5);
+background-image: url('./img/Screenshot\ 2023-08-17\ at\ 12.20.52\ PM.png');
+background-size: cover;
+background-repeat: no-repeat;
+font-family: 'Graduate', cursive;
+text-align: center;
+font-weight: bolder; 
+font-size: 14.5px;
+flex: 1;
 }
 
 
 .card-football .card-content {
-    color: rgb(228, 25, 25); 
-    background-color: rgba(200, 200, 200, 0.5);
-    background-image: url('./img/football.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    font-family: 'Ultra', serif;
-    text-align: center;
-    font-weight: lighter;
-    font-size: 18px;
+  color: rgb(228, 25, 25); 
+  background-color: rgba(200, 200, 200, 0.5);
+  background-image: url('./img/football.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: 'Ultra', serif;
+  text-align: center;
+  font-weight: lighter;
+  font-size: 18px;
+  flex: 1;
 }
 
 .card-basketball .card-content {
-    color: rgb(238, 233, 94); 
-    background-color: rgba(200, 200, 200, 0.5);
-    background-image: url('./img/basketball.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    font-family: 'Anton', sans-serif;
-    text-align: center;
-    font-size: 16.5px;
+  color: rgb(238, 233, 94); 
+  background-color: rgba(200, 200, 200, 0.5);
+  background-image: url('./img/basketball.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: 'Anton', sans-serif;
+  text-align: center;
+  font-size: 16.5px;
+  flex: 1;
 }
 
 .card {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .form-label {
-    font-weight: bold;
-  }
-  
-  .btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
-  }
-  
-  .btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #0056b3;
-  }
-  
-  .invalid-feedback {
-    display: block;
-    font-size: 12px;
-    color: #dc3545;
-  }
-  
-  .needs-validation input:invalid {
-    border-color: #dc3545;
-  }
-  
-  .needs-validation input:valid {
-    border-color: #28a745;
-  }
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
 
-  th {
-    background-color: #FFFFFF;
-  }
+.form-label {
+  font-weight: bold;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.invalid-feedback {
+  display: block;
+  font-size: 12px;
+  color: #dc3545;
+}
+
+.needs-validation input:invalid {
+  border-color: #dc3545;
+}
+
+.needs-validation input:valid {
+  border-color: #28a745;
+}
+
+th {
+  background-color: #FFFFFF;
+}
