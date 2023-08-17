@@ -1,6 +1,5 @@
 from django.db import models
 from django.urls import reverse
-from django.utils import timezone
 from django.contrib.auth.models import User
 
 # Create your models here.
@@ -15,7 +14,7 @@ ATTENDING = (("Y", "Yes"), ("N", "No"))
 class Event(models.Model):
     name = models.CharField(max_length=100)
     location = models.CharField(max_length=100)
-    date = models.DateField("Party Date", default=timezone.now)
+    date = models.DateField("Party Date", default='2023-08-17')
     sport = models.CharField(max_length=100, choices=SPORTS, default=SPORTS[0][0])
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.TextField(max_length=500)
