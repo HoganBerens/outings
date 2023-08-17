@@ -5,29 +5,41 @@
   <div class="card {% if event.sport == 'Baseball' %} card-baseball
                 {% elif event.sport == 'Football' %} card-football
                 {% elif event.sport == 'Basketball' %} card-basketball
-                {% endif %}">
-    <div class="card-content">
+                {% endif %}" style="max-width: 500px; margin: 0 auto;">
+    <div class="card-content" style="background-size: cover;">
       <p>Event: {{event.name}}</p>
       <p>Location: {{event.location}}</p>
       <p>Date: {{event.date_time}}</p>
       <p>Sport: {{event.sport}}</p>
       <p>Description: {{event.description}}</p>
       <div>
-        <img src="{{ event.map_url }}" alt="Static Map" width="400" height="400">
+        <img src="{{ event.map_url }}" alt="Static Map" width="300" height="300">
         <p><a href="https://www.google.com/maps/dir/?api=1&destination={{ event.location }}" target="_blank">Get Directions</a></p>
       </div>
     </div>
-    {% if request.user == event.user %}
-    <a href="{% url 'events_update' event.id %}" class="btn btn-primary">Edit</a>
-    <a href="{% url 'events_delete' event.id %}" class="btn btn-danger">Delete</a>
+  </div>
+  <div class="mt-3">
+       {% if request.user == event.user %} 
+       <a href="{% url 'events_update' event.id %}" class="btn btn-primary">Edit</a>
+    <a href="{% url 'events_delete' event.id %}" class="btn btn-danger ml-2">Delete</a>
+
 {% endif %}
   </div>
   <form action="{% url 'add_comment' event.id %}" method="POST">
     {% csrf_token %}
-    {{ comment_form.as_p }}
-    <input type="submit" class="btn btn-primary mt-3" value="Add Comment">
+    <div class="mb-3" style="max-width: 500px; margin: 0 auto;">
+      <label for="{{ comment_form.comment.id_for_label }}" class="form-label text-dark">Comment</label>
+      <textarea class="form-control" name="{{ comment_form.comment.name }}" rows="4" placeholder="Add your comment here">{{ comment_form.comment.value|default:'' }}</textarea>
+    </div>
+    <div class="mb-3 text-center">
+      <strong>{{ comment_form.attending.label_tag }}</strong><br>
+      {{ comment_form.attending }}
+    </div>
+    <div class="text-center">
+      <input type="submit" class="btn btn-primary mt-3" value="Add Comment">
+    </div>
   </form>
-  <table class="table mt-3">
+  <table class="table mt-3" style="max-width: 600px; margin: 0 auto;">
     <thead>
       <tr><th>Username</th><th>Comment</th><th>Attending</th></tr>
     </thead>
