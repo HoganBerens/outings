@@ -1,9 +1,10 @@
-.body {
+body {
     background-image: url('./img/cq5dam.web.1600.800.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     font-family: Arial, sans-serif;
+    background-attachment: fixed;
 }
 
 /* Style the navbar links */
@@ -77,6 +78,7 @@ h1 {
     font-family: 'Ultra', serif;
     text-align: center;
     font-weight: lighter;
+    font-size: 18px;
 }
 
 .card-basketball .card-content {
@@ -86,7 +88,7 @@ h1 {
     background-repeat: no-repeat;
     font-family: 'Anton', sans-serif;
     text-align: center;
-    font-size: 16px;
+    font-size: 16.5px;
 }
 
 .card {
@@ -94,7 +96,7 @@ h1 {
   }
   
   .form-card {
-    background-color: #b5d6db; /* Change this color to your preferred background color */
+    background-color: #A8C4E5; 
     padding: 20px;
     border-radius: 10px;
   }
@@ -125,4 +127,8 @@ h1 {
   
   .needs-validation input:valid {
     border-color: #28a745;
+  }
+
+  th {
+    background-color: #A8C4E5;
   }
