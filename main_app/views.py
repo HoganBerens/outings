@@ -51,7 +51,7 @@ def events_detail(request, event_id):
 
 class EventCreate(LoginRequiredMixin, CreateView):
     model = Event
-    fields = ["name", "location", "date", "sport", "description"]
+    fields = ["name", "location", "date_time", "sport", "description"]
     success_url = "/events"
     def form_valid(self, form):
         location = form.cleaned_data["location"]
@@ -84,13 +84,12 @@ class EventCreate(LoginRequiredMixin, CreateView):
 
         form.instance.map_url = map_url
         form.instance.user = self.request.user
-        print("Date Value:", form.cleaned_data['date'])
         return super().form_valid(form)
 
 
 class EventUpdate(LoginRequiredMixin, UpdateView):
     model = Event
-    fields = ["location", "sport", "description"]
+    fields = ["location","date_time", "sport", "description"]
 
 
 class EventDelete(LoginRequiredMixin, DeleteView):

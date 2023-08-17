@@ -14,7 +14,7 @@ ATTENDING = (("Y", "Yes"), ("N", "No"))
 class Event(models.Model):
     name = models.CharField(max_length=100)
     location = models.CharField(max_length=100)
-    date = models.DateField("Party Date", default='2023-08-17')
+    date_time = models.DateTimeField("Party Date",default='2023-08-17T00:00')
     sport = models.CharField(max_length=100, choices=SPORTS, default=SPORTS[0][0])
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.TextField(max_length=500)
