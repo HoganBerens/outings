@@ -17,8 +17,11 @@
                     <p><a href="https://www.google.com/maps/dir/?api=1&destination={{ event.location }}" target="_blank">Get Directions</a></p>
                 </div>
                 {% for comment in event.comment_set.all %}
-                <a href="{% url 'edit_comment' event_id=event.id comment_id=comment.id %}">Edit Comment</a>
+                <a href="{% url 'edit_comment' event.id comment.id %}">Edit Comment</a>
+                <a href="{% url 'delete_comment' event.id comment.id %}">Not Attending? Delete Event from Attending Events</a>
             {% endfor %}
+            
+  
             </div>
         </div>
     {% endfor %}

@@ -7,3 +7,4 @@ class CommentForm(ModelForm):
     fields = ['comment', 'attending']
 
 
+

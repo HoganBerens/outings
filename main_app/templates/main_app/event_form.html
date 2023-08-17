@@ -1,15 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container mt-5">
-  <div class="card mx-auto" style="max-width: 600px;">
-    <div class="card-body">
+<div class="container mt-5" >
+  <div class="card mx-auto" style="max-width: 600px; background-color: transparent;">
+    <div class="card-body" >
       {% if object %}
       <h1 class="text-center">Edit <span class="text-primary">{{ object.name }}</span></h1>
       {% else %}
       <h1 class="text-center">Add Event</h1>
       {% endif %}
-
-      <form action="" method="POST">
+      <form action="" method="POST" >
         {% csrf_token %}
         <div class="mb-3">
           <label for="{{ form.name.id_for_label }}" class="form-label text-dark">Event Name</label>
@@ -17,8 +16,8 @@
         </div>
         <div class="mb-3">
           <label for="{{ form.date.id_for_label }}" class="form-label text-dark">Date</label>
-          <input type="date" class="form-control" value="{{form.date}}" >
-        </div>
+          <input type="date" class="form-control" value="{{ form.date.value}}" >
+      </div>      
         <div class="mb-3">
           <label for="{{ form.sport.id_for_label }}" class="form-label text-dark">Sport</label>
           {{ form.sport }}
