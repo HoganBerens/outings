@@ -5,3 +5,4 @@ from .models import Event, Comment
 admin.site.register(Event)
 admin.site.register(Comment)
 
+

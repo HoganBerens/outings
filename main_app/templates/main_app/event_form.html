@@ -17,7 +17,7 @@
         </div>
         <div class="mb-3">
           <label for="{{ form.date.id_for_label }}" class="form-label text-dark">Date</label>
-          <input type="date" class="form-control" name="{{ form.date.name }}" value="{{ form.date.value|default:'' }}" required>
+          <input type="datetime-local" class="form-control" name="{{ form.date_time.name }}" value="{{ form.date_time.value|default:'' }}" required>
           <div class="invalid-feedback">Please provide a valid date.</div>
         </div>
         <div class="mb-3">

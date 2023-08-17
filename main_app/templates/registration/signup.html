@@ -9,24 +9,11 @@
         <div class="card-body">
           <h1 class="card-title mb-4">Sign Up</h1>
           <p class="text-danger">{{ error_message }}</p>
-          <form method="POST" action="{% url 'signup' %}" class="needs-validation" novalidate>
+          <form method="post">
             {% csrf_token %}
-            <div class="form-group">
-              <label for="{{ form.username.id_for_label }}">Username</label>
-              {{ form.username }}
-            </div>
-            <div class="form-group">
-              <label for="{{ form.password1.id_for_label }}">Password</label>
-              {{ form.password1 }}
-            </div>
-            <div class="form-group">
-              <label for="{{ form.password2.id_for_label }}">Confirm Password</label>
-              {{ form.password2 }}
-            </div>
-            <div class="text-center">
-              <button type="submit" class="btn btn-primary">Sign Up</button>
-            </div>
-          </form>
+            {{ form.as_p }}
+            <button type="submit">Sign up</button>
+        </form>
         </div>
       </div>
     </div>

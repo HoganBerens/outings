@@ -9,7 +9,7 @@
     <div class="card-content" style="background-size: cover;">
       <p>Event: {{event.name}}</p>
       <p>Location: {{event.location}}</p>
-      <p>Date: {{event.date}}</p>
+      <p>Date: {{event.date_time}}</p>
       <p>Sport: {{event.sport}}</p>
       <p>Description: {{event.description}}</p>
       <div>
@@ -19,8 +19,11 @@
     </div>
   </div>
   <div class="mt-3">
-    <a href="{% url 'events_update' event.id %}" class="btn btn-primary">Edit</a>
+       {% if request.user == event.user %} 
+       <a href="{% url 'events_update' event.id %}" class="btn btn-primary">Edit</a>
     <a href="{% url 'events_delete' event.id %}" class="btn btn-danger ml-2">Delete</a>
+
+{% endif %}
   </div>
   <form action="{% url 'add_comment' event.id %}" method="POST">
     {% csrf_token %}
