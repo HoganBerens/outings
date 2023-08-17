@@ -25,10 +25,11 @@
                 <p><a href="https://www.google.com/maps/dir/?api=1&destination={{ event.location }}" target="_blank">Get Directions</a></p>
               </div>
               {% for comment in event.comment_set.all %}
-              <a href="{% url 'edit_comment' event.id comment.id %}">Edit Comment</a> 
+              <a href="{% url 'edit_comment' event.id comment.id %}" style="background-color: rgba(200, 200, 200, 0.5); padding: 5px;">Edit Comment</a> 
               ||
-              <a href="{% url 'delete_comment' event.id comment.id %}">Not Attending? Delete Event from Attending Events</a>
-          {% endfor %}
+              <a href="{% url 'delete_comment' event.id comment.id %}" style="background-color: rgba(200, 200, 200, 0.5); padding: 5px;">Not Attending? Delete Event</a>
+              <br>
+              {% endfor %}
             </div>
           </div>
         </div>
