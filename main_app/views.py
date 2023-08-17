@@ -119,7 +119,7 @@ def add_comment(request, event_id):
 def edit_comment(request, event_id, comment_id):
     event = Event.objects.get(id=event_id)
     comment = Comment.objects.get(id=comment_id)
-
+    comment.user = request.user
     if request.method == "POST":
         form = CommentForm(request.POST, instance=comment)
         if form.is_valid():
