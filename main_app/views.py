@@ -99,11 +99,13 @@ class EventDelete(LoginRequiredMixin, DeleteView):
 
 @login_required
 def add_comment(request, event_id):
+
     form = CommentForm(request.POST)
     event = Event.objects.get(id=event_id)
     if form.is_valid():
         new_comment = form.save(commit=False)
         new_comment.event_id = event_id
+        new_comment.user = request.user
         new_comment.save()
         attending_choice = request.POST.get("attending", "N")
         if attending_choice == "Y":
@@ -117,21 +119,25 @@ def add_comment(request, event_id):
 def edit_comment(request, event_id, comment_id):
     event = Event.objects.get(id=event_id)
     comment = Comment.objects.get(id=comment_id)
-    event_id=event.id 
-    comment_id=comment.id
+
     if request.method == "POST":
-        form = CommentForm(request.POST)
+        form = CommentForm(request.POST, instance=comment)
         if form.is_valid():
             attending_choice = request.POST.get("attending", "N")
+            user_is_attending = event.attendees.filter(id=request.user.id).exists()
             if attending_choice == "Y":
-                form.save()
+                if not user_is_attending:
+                    event.attendees.add(request.user)  
             else:
-                event.attendees.remove(request.user)
-        return redirect("my_events")
+                if user_is_attending:
+                    event.attendees.remove(request.user)  
+                
+            form.save()  
+            return redirect("my_events")
     else:
         form = CommentForm(instance=comment)
-    context = {"form": form, "event_id": event_id, "comment_id": comment_id}
 
+    context = {"form": form, "event_id": event_id, "comment_id": comment_id}
     return render(request, "main_app/comment_form.html", context)
 
 @login_required
