@@ -51,9 +51,8 @@ def events_detail(request, event_id):
 
 class EventCreate(LoginRequiredMixin, CreateView):
     model = Event
-    fields = ["name", "location", "date", "sport", "description"]
+    fields = ["name", "location", "date_time", "sport", "description"]
     success_url = "/events"
-
     def form_valid(self, form):
         location = form.cleaned_data["location"]
 
@@ -61,8 +60,10 @@ class EventCreate(LoginRequiredMixin, CreateView):
 
         gmaps_client = GoogleMapsClient(api_key)
 
+       
         geocode_result = gmaps_client.geocode(location)
         if not geocode_result:
+            
             form.add_error(
                 "location", "Location not found, please enter a valid adress."
             )
@@ -88,7 +89,7 @@ class EventCreate(LoginRequiredMixin, CreateView):
 
 class EventUpdate(LoginRequiredMixin, UpdateView):
     model = Event
-    fields = ["location", "sport", "description"]
+    fields = ["location","date_time", "sport", "description"]
 
 
 class EventDelete(LoginRequiredMixin, DeleteView):
