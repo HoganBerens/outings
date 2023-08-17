@@ -27,11 +27,12 @@
   </form>
   <table class="table mt-3">
     <thead>
-      <tr><th>Comment</th><th>Attending</th></tr>
+      <tr><th>Username</th><th>Comment</th><th>Attending</th></tr>
     </thead>
     <tbody>
       {% for comment in event.comment_set.all %}
       <tr>
+        <td>{{comment.user.username}}</td>
         <td>{{comment.comment}}</td>
         <td>{{comment.attending}}</td>
       </tr>

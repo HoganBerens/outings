@@ -64,7 +64,7 @@ class EventCreate(LoginRequiredMixin, CreateView):
         geocode_result = gmaps_client.geocode(location)
         if not geocode_result:
             form.add_error(
-                "location", "Location not found, please enter a valid address."
+                "location", "Location not found, please enter a valid adress."
             )
             return self.form_invalid(form)
         if geocode_result:
@@ -97,9 +97,27 @@ class EventDelete(LoginRequiredMixin, DeleteView):
 
 
 @login_required
+def add_comment(request, event_id):
+    form = CommentForm(request.POST)
+    event = Event.objects.get(id=event_id)
+    if form.is_valid():
+        new_comment = form.save(commit=False)
+        new_comment.event_id = event_id
+        new_comment.save()
+        attending_choice = request.POST.get("attending", "N")
+        if attending_choice == "Y":
+            if not event.attendees.filter(id=request.user.id).exists():
+                print(event.attendees)
+                event.attendees.add(request.user)
+                return redirect("detail", event_id=event_id)
+    return redirect("detail", event_id=event_id)
+
+@login_required
 def edit_comment(request, event_id, comment_id):
     event = Event.objects.get(id=event_id)
     comment = Comment.objects.get(id=comment_id)
+    event_id=event.id 
+    comment_id=comment.id
     if request.method == "POST":
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -115,21 +133,17 @@ def edit_comment(request, event_id, comment_id):
 
     return render(request, "main_app/comment_form.html", context)
 
-
 @login_required
-def add_comment(request, event_id):
-    form = CommentForm(request.POST)
+def delete_comment(request, event_id, comment_id):
     event = Event.objects.get(id=event_id)
-    if form.is_valid():
-        new_comment = form.save(commit=False)
-        new_comment.event_id = event_id
-        new_comment.save()
-        attending_choice = request.POST.get("attending", "N")
-        if attending_choice == "Y":
-            if not event.attendees.filter(id=request.user.id).exists():
-                event.attendees.add(request.user)
-                return redirect("detail", event_id=event_id)
-    return redirect("detail", event_id=event_id)
+    comment = Comment.objects.get(id=comment_id)
+    event_id=event.id 
+    comment_id=comment.id
+    event.attendees.remove(request.user)
+    comment.delete()
+
+    return redirect("my_events")
+
 
 
 @login_required
