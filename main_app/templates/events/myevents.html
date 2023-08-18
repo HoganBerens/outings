@@ -28,7 +28,7 @@
                                               {% endif %}">
                 Host: {{ event.user.username }}</p>
               <p class="card-text">Location: {{ event.location }}</p> 
-              <p class="card-text">Date: {{ event.date }}</p>
+              <p class="card-text">Date: {{ event.date_time }}</p>
               <p class="card-text">Sport: {{ event.sport }}</p>
               {% for comment in event.comment_set.all %}
               {% if request.user == comment.user %}
