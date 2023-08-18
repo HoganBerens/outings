@@ -29,9 +29,8 @@ h1 {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 20px;
-  color:#333333;
+  color: #333333;
 }
-
 
 /* Style the form */
 .form-group {
@@ -52,7 +51,7 @@ h1 {
 /* Style the card */
 .card {
   border: 1px solid #e5e5e5;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   margin-bottom: 20px;
   max-width: 500px;
@@ -61,45 +60,36 @@ h1 {
   flex-direction: column;
 }
 
+.card-content {
+  background-color: rgba(200, 200, 200, 0.5);
+  background-size: cover;
+  background-repeat: no-repeat;
+  text-align: center;
+  flex: 1;
+}
+
 .card-baseball .card-content {
-color: rgb(28, 124, 35); 
-background-color: rgba(200, 200, 200, 0.5);
-background-image: url('./img/baseball.png');
-background-size: cover;
-background-repeat: no-repeat;
-font-family: 'Graduate', cursive;
-text-align: center;
-font-weight: bolder; 
-font-size: 14.5px;
-flex: 1; 
+  color: rgb(28, 124, 35);
+  background-image: url('./img/baseball.png');
+  font-family: 'Graduate', cursive;
+  font-weight: bolder;
+  font-size: 14.5px;
 }
 
 .card-football .card-content {
-  color: rgb(228, 25, 25); 
-  background-color: rgba(200, 200, 200, 0.5);
+  color: rgb(228, 25, 25);
   background-image: url('./img/football.png');
-  background-size: cover;
-  background-repeat: no-repeat;
   font-family: 'Ultra', serif;
-  text-align: center;
   font-weight: lighter;
-  font-size: 12x;
-  flex: 1;
+  font-size: 12px;
 }
 
 .card-basketball .card-content {
-  color: rgb(238, 233, 94); 
-  background-color: rgba(200, 200, 200, 0.5);
+  color: rgb(238, 233, 94);
   background-image: url('./img/basketball.png');
-  background-size: cover;
-  background-repeat: no-repeat;
   font-family: 'Anton', sans-serif;
-  text-align: center;
   font-size: 16.5px;
-  flex: 1;
 }
-
-
 
 .form-label {
   font-weight: bold;
@@ -136,7 +126,7 @@ th {
 .transparent-dropdown {
   background-color: transparent;
   border: none;
-  color: #333; 
-  font-size: 14px; 
+  color: #333;
+  font-size: 14px;
   margin-right: 10px;
 }

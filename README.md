@@ -11,10 +11,12 @@ Picture a world where the roar of the crowd and the thrill of the game come toge
 # Screenshots
 
 <img src="https://i.imgur.com/GZLsbq1.png">
-<img src="https://i.imgur.com/RK7lCmk.png">
-<img src="https://i.imgur.com/N9U7smV.png">
-<img src="https://i.imgur.com/pxmtC7l.png">
-<img src="https://i.imgur.com/GCZDYAF.png">
+<img src="https://i.imgur.com/JRklXhh.png">
+<img src="https://i.imgur.com/R2lR85h.png">
+<img src="https://i.imgur.com/lwkjPDn.png">
+<img src="https://i.imgur.com/8iM71VF.png">
+<img src="https://i.imgur.com/1wT91fQ.png">
+<img src="https://i.imgur.com/jBZTl8K.png">
 
 # Technologies Used
 
@@ -27,6 +29,8 @@ Picture a world where the roar of the crowd and the thrill of the game come toge
 - Bootstrap
 - GitHub
 - Heroku
+- Static Maps API
+- Directions API
 
 # Getting Started
 
@@ -39,3 +43,4 @@ Picture a world where the roar of the crowd and the thrill of the game come toge
 - Permit users to monetize events that they host
 - Detail a friends function where users can follow and interact with other users
 - Optimize app design for mobile users
+- User can have a profile with their contact information
