@@ -55,8 +55,8 @@
         <td><a href="{% url 'delete_comment' event.id comment.id %}" class="btn btn-danger btn-sm">Delete Comment</a></td>
         <td><a href="{% url 'edit_comment' event.id comment.id %}" class="btn btn-secondary btn-sm">Edit Comment</a></td>
         {% else %}
-        <td>Not your comment you can't edit</td>
-        <td>Not your comment you can't delete</td>
+        <td> </td>
+        <td> </td>
         {% endif %}
       </tr>
     {% endfor %}
