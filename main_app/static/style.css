@@ -37,6 +37,8 @@ h1 {
   border: 1px solid #e5e5e5;
   border-radius: 5px;
   margin-bottom: 20px;
+  max-width: fit-content;
+  max-height: fit-content;
 }
 
 /* Style the form */
@@ -78,7 +80,7 @@ flex: 1;
   font-family: 'Ultra', serif;
   text-align: center;
   font-weight: lighter;
-  font-size: 18px;
+  font-size: 12x;
   flex: 1;
 }
 

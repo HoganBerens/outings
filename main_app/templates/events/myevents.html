@@ -19,12 +19,7 @@
               <p class="card-text">Host: {{event.user.username}}</p>
               <p class="card-text">Location: {{ event.location }}</p>
               <p class="card-text">Date: {{ event.date_time }}</p>
-              <p class="card-text">Sport: {{ event.sport }}</p>
-              <p class="card-text">Description: {{ event.description }}</p>
-              <div class="text-center mt-3">
-                <img src="{{ event.map_url }}" alt="Static Map" class="img-fluid" style="max-width: 200px;">
-                <p><a href="https://www.google.com/maps/dir/?api=1&destination={{ event.location }}" target="_blank">Get Directions</a></p>
-              </div>
+              <p class="card-text">Sport: {{ event.sport }}</p> 
               {% for comment in event.comment_set.all %}
               {% if request.user == comment.user %}
               <a href="{% url 'edit_comment' event.id comment.id %}" class="btn btn-secondary btn-sm">Edit Comment</a>
