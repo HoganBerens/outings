@@ -24,12 +24,24 @@
   </div>
 </div>
 {% endif %}
+
 <div class="container">
   <div class="row">
     <div class="col-md-4 mb-4">
       <div class="display-4">{{ sport }}</div>
     </div>
   </div>
+    <form action="{% url 'filter_sport' %}" method="POST">
+        {% csrf_token %}
+        <select name="sport" class="transparent-dropdown">
+          <option selected disabled>Select a Sport</option>
+          <option>Basketball</option>
+          <option>Baseball</option>
+          <option>Football</option>
+      </select>
+      <input type="submit" class="btn" value="add filters" />
+      
+    </form>
 
   <div class="row">
     {% if events %} {% for event in events %}
@@ -41,7 +53,6 @@
             <p>Location: {{ event.location }}</p>
             <p>Date: {{ event.date_time }}</p>
             <p>Sport: {{ event.sport }}</p>
-            <p>Description: {{ event.description }}</p>
           </div>
         </div>
       </a>

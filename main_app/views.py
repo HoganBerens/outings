@@ -34,6 +34,10 @@ def events_index(request):
 
     return render(request, "events/index.html", {"events": events})
 
+def filter_sport(request):
+    events = Event.objects.filter(sport=request)
+    return render(request, "home.html", {"events": events})
+
 
 @login_required
 def events_detail(request, event_id):

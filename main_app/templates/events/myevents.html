@@ -10,7 +10,6 @@
       <div class="row">
         {% for event in attending_events %}
         <div class="col-md-6 mb-4">
-          <a href="{% url 'detail' event.id %}">
           <div class="card {% if event.sport == 'Baseball' %}card-baseball
                             {% elif event.sport == 'Football' %}card-football
                             {% elif event.sport == 'Basketball' %}card-basketball
@@ -18,8 +17,8 @@
             <div class="card-content">
               <h5 class="card-title">{{ event.name }}</h5>
               <p class="card-text">Host: {{event.user.username}}</p>
-              <p class="card-text">Location: {{ event.location }}</p> 
-              <p class="card-text">Date: {{ event.date }}</p>
+              <p class="card-text">Location: {{ event.location }}</p>
+              <p class="card-text">Date: {{ event.date_time }}</p>
               <p class="card-text">Sport: {{ event.sport }}</p>
               <p class="card-text">Description: {{ event.description }}</p>
               <div class="text-center mt-3">
