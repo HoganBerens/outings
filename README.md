@@ -7,6 +7,12 @@ Introducing Outings and Occurrences: Uniting Passion and Camaraderie in the Worl
 
 Picture a world where the roar of the crowd and the thrill of the game come together in perfect harmony. Outings and Occurrences is not just an app – it's a celebration waiting to happen. Born out of a passion for sports and a deep desire to foster genuine connections, this dynamic platform is set to redefine how we experience sporting events.
 
+**Key Features:**
+- Create and manage your own sporting events
+- RSVP for events you're interested in attending
+- Interact with other users through comments and updates
+- Discover exciting upcoming sporting occasions
+
 
 # Screenshots
 
@@ -20,17 +26,19 @@ Picture a world where the roar of the crowd and the thrill of the game come toge
 
 # Technologies Used
 
-- JavaScript
-- HTML
-- CSS
-- Django
-- Python
-- Postgresql
-- Bootstrap
-- GitHub
-- Heroku
-- Static Maps API
-- Directions API
+Here are the technologies and tools used to develop this project:
+
+- **JavaScript**: Used for client-side scripting and interactivity.
+- **HTML**: The markup language used to structure the content of web pages.
+- **CSS**: Used for styling and design to enhance the user interface.
+- **Django**: A Python web framework for building robust and scalable web applications.
+- **Python**: The programming language used for server-side development.
+- **PostgreSQL**: An open-source relational database management system.
+- **Bootstrap**: A front-end framework for responsive and mobile-first design.
+- **GitHub**: Version control platform for collaboration and code management.
+- **Heroku**: Cloud platform for deploying, managing, and scaling applications.
+- **Static Maps API**: Used to generate static map images for event locations.
+- **Directions API**: Used to provide directions and routes for event locations.
 
 # Getting Started
 
