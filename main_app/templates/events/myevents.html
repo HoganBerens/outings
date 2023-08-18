@@ -10,6 +10,7 @@
       <div class="row">
         {% for event in attending_events %}
         <div class="col-md-6 mb-4">
+          <a href="{% url 'detail' event.id %}">
           <div class="card {% if event.sport == 'Baseball' %}card-baseball
                             {% elif event.sport == 'Football' %}card-football
                             {% elif event.sport == 'Basketball' %}card-basketball

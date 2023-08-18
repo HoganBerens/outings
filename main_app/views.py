@@ -133,7 +133,7 @@ def edit_comment(request, event_id, comment_id):
                     event.attendees.remove(request.user)  
                 
             form.save()  
-            return redirect("my_events")
+            return redirect("detail", event_id=event_id)
     else:
         form = CommentForm(instance=comment)
 
@@ -149,7 +149,7 @@ def delete_comment(request, event_id, comment_id):
     event.attendees.remove(request.user)
     comment.delete()
 
-    return redirect("my_events")
+    return redirect("detail", event_id=event_id)
 
 
 

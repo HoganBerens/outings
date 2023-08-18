@@ -25,11 +25,7 @@
        {% if request.user == event.user %} 
        <a href="{% url 'events_update' event.id %}" class="btn btn-primary">Edit</a>
     <a href="{% url 'events_delete' event.id %}" class="btn btn-danger ml-2">Delete</a>
-<<<<<<< HEAD
-        {% endif %}
-=======
 {% endif %}
->>>>>>> main
   </div>
   <form action="{% url 'add_comment' event.id %}" method="POST">
     {% csrf_token %}
@@ -47,7 +43,7 @@
   </form>
   <table class="table mt-3" style="max-width: 600px; margin: 0 auto;">
     <thead>
-      <tr><th>Username</th><th>Comment</th><th>Attending</th></tr>
+      <tr><th>Username</th><th>Comment</th><th>Attending</th><th>Edit Comment</th><th>Delete Your Comment</th></tr>
     </thead>
     <tbody>
       {% for comment in event.comment_set.all %}
@@ -55,6 +51,13 @@
         <td>{{ comment.user.username }}</td>
         <td>{{ comment.comment }}</td>
         <td>{{ comment.attending }}</td>
+        {% if request.user == comment.user %}
+        <td><a href="{% url 'delete_comment' event.id comment.id %}" class="btn btn-danger btn-sm">Delete Comment</a></td>
+        <td><a href="{% url 'edit_comment' event.id comment.id %}" class="btn btn-secondary btn-sm">Edit Comment</a></td>
+        {% else %}
+        <td>Not your comment you can't edit</td>
+        <td>Not your comment you can't delete</td>
+        {% endif %}
       </tr>
     {% endfor %}
     
