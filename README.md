@@ -28,7 +28,6 @@ Picture a world where the roar of the crowd and the thrill of the game come toge
 
 Here are the technologies and tools used to develop this project:
 
-- **JavaScript**: Used for client-side scripting and interactivity.
 - **HTML**: The markup language used to structure the content of web pages.
 - **CSS**: Used for styling and design to enhance the user interface.
 - **Django**: A Python web framework for building robust and scalable web applications.
