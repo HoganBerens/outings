@@ -23,8 +23,7 @@
        {% if request.user == event.user %} 
        <a href="{% url 'events_update' event.id %}" class="btn btn-primary">Edit</a>
     <a href="{% url 'events_delete' event.id %}" class="btn btn-danger ml-2">Delete</a>
-
-{% endif %}
+        {% endif %}
   </div>
   <form action="{% url 'add_comment' event.id %}" method="POST">
     {% csrf_token %}
