@@ -10,8 +10,11 @@ Picture a world where the roar of the crowd and the thrill of the game come toge
 
 # Screenshots
 
-<img src="url to your image on imgur">
-<img src="url to your image on imgur">
+<img src="https://i.imgur.com/GZLsbq1.png">
+<img src="https://i.imgur.com/RK7lCmk.png">
+<img src="https://i.imgur.com/N9U7smV.png">
+<img src="https://i.imgur.com/pxmtC7l.png">
+<img src="https://i.imgur.com/GCZDYAF.png">
 
 # Technologies Used
 
@@ -34,6 +37,5 @@ Picture a world where the roar of the crowd and the thrill of the game come toge
 # Next Steps
 
 - Permit users to monetize events that they host
-- Give users the option to bookmark events
 - Detail a friends function where users can follow and interact with other users
 - Optimize app design for mobile users
