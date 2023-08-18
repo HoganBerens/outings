@@ -5,7 +5,7 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-6">
-      <div class="card mt-5">
+      <div class="card mt-5" style="background-color: rgba(200, 200, 200, 0.3);">
         <div class="card-body">
           <h1 class="card-title mb-4">Sign Up</h1>
           <form method="post" class="needs-validation" novalidate>
@@ -24,10 +24,10 @@
               <label for="{{ form.password1.id_for_label }}" class="form-label">Password</label>
               {{ form.password1 }}
               <small id="passwordHelpBlock" class="form-text text-muted">
-                Your password can’t be too similar to your other personal information.<br>
+                Your password can't be too similar to your other personal information.<br>
                 Your password must contain at least 8 characters.<br>
-                Your password can’t be a commonly used password.<br>
-                Your password can’t be entirely numeric.
+                Your password can't be a commonly used password.<br>
+                Your password can't be entirely numeric.
               </small>
               <div class="invalid-feedback">
                 Please provide a valid password.
