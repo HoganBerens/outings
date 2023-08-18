@@ -10,17 +10,26 @@
       <div class="row">
         {% for event in attending_events %}
         <div class="col-md-6 mb-4">
-          <a href="{% url 'detail' event.id %}">
           <div class="card {% if event.sport == 'Baseball' %}card-baseball
                             {% elif event.sport == 'Football' %}card-football
                             {% elif event.sport == 'Basketball' %}card-basketball
                             {% endif %}">
             <div class="card-content">
-              <h5 class="card-title">{{ event.name }}</h5>
-              <p class="card-text">Host: {{event.user.username}}</p>
-              <p class="card-text">Location: {{ event.location }}</p>
-              <p class="card-text">Date: {{ event.date_time }}</p>
-              <p class="card-text">Sport: {{ event.sport }}</p> 
+              <h5 class="card-title">
+                <a href="{% url 'detail' event.id %}" class=" {% if event.sport == 'Baseball' %}text-success
+                                                             {% elif event.sport == 'Football' %}text-danger
+                                                             {% elif event.sport == 'Basketball' %}text-warning
+                                                             {% endif %}"
+                   style="text-decoration: none;">{{ event.name }}</a>
+              </h5>
+              <p class="card-text" style="{% if event.sport == 'Baseball' %}color: rgb(28, 124, 35);
+                                              {% elif event.sport == 'Football' %}color: rgb(228, 25, 25);
+                                              {% elif event.sport == 'Basketball' %}color: rgb(238, 233, 94);
+                                              {% endif %}">
+                Host: {{ event.user.username }}</p>
+              <p class="card-text">Location: {{ event.location }}</p> 
+              <p class="card-text">Date: {{ event.date }}</p>
+              <p class="card-text">Sport: {{ event.sport }}</p>
               {% for comment in event.comment_set.all %}
               {% if request.user == comment.user %}
               <a href="{% url 'edit_comment' event.id comment.id %}" class="btn btn-secondary btn-sm">Edit Comment</a>
