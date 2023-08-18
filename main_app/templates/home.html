@@ -31,7 +31,7 @@
       <div class="display-4">{{ sport }}</div>
     </div>
   </div>
-    <form action="{% url 'filter_sport' %}" method="POST">
+    <form action="{% url 'home' %}" method="POST">
         {% csrf_token %}
         <select name="sport" class="transparent-dropdown">
           <option selected disabled>Select a Sport</option>
