@@ -1,5 +1,5 @@
 body {
-  background-image: url('./img/cq5dam.web.1600.800.jpg');
+  background-color: rgba(220, 220, 220, 0.825);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -70,24 +70,24 @@ h1 {
 
 .card-baseball .card-content {
   color: rgb(28, 124, 35);
-  background-image: url('./img/baseball.png');
-  font-family: 'Graduate', cursive;
+  background-image: url("./img/baseball.png");
+  font-family: "Graduate", cursive;
   font-weight: bolder;
   font-size: 14.5px;
 }
 
 .card-football .card-content {
   color: rgb(228, 25, 25);
-  background-image: url('./img/football.png');
-  font-family: 'Ultra', serif;
+  background-image: url("./img/football.png");
+  font-family: "Ultra", serif;
   font-weight: lighter;
   font-size: 15px;
 }
 
 .card-basketball .card-content {
   color: rgb(238, 233, 94);
-  background-image: url('./img/basketball.png');
-  font-family: 'Anton', sans-serif;
+  background-image: url("./img/basketball.png");
+  font-family: "Anton", sans-serif;
   font-size: 16.5px;
 }
 
@@ -120,7 +120,7 @@ h1 {
 }
 
 th {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 }
 
 .transparent-dropdown {
