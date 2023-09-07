@@ -1,5 +1,5 @@
 body {
-  background-color: rgba(220, 220, 220, 0.825);
+  background-color: rgba(220, 220, 220, 0.825) !important;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
